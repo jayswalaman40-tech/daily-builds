@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Tools for Home-Service Businesses — AnswerCatch</title>
+<meta name="description" content="Free, no-signup tools for plumbers, HVAC, electricians and other service pros. New tools added regularly." />
+<style>
+  :root{
+    --bg:#0C1017; --panel:#151B25; --panel2:#1D2635; --line:#2C3648;
+    --ink:#EDF1F7; --muted:#97A3B8; --accent:#FFB224; --accentInk:#191100; --blue:#5AB0FF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',Inter,system-ui,sans-serif;min-height:100vh;padding:28px 16px}
+  .wrap{max-width:760px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+  .logo{width:34px;height:34px;border-radius:9px;background:var(--accent);
+    color:var(--accentInk);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:18px}
+  .brand a{color:var(--muted);text-decoration:none;font-size:13px}
+  h1{font-size:30px;margin:0 0 8px}
+  .lede{color:var(--muted);font-size:16px;margin:0 0 28px;line-height:1.55;max-width:620px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .tool{display:block;background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;padding:20px;text-decoration:none;color:var(--ink);
+    transition:border-color .15s ease, transform .12s ease}
+  .tool:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .tool .tag{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .tool h3{margin:8px 0 6px;font-size:18px}
+  .tool p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .soon{opacity:.5;pointer-events:none}
+  .foot{color:var(--muted);font-size:13px;text-align:center;margin-top:32px;line-height:1.7}
+  .foot a{color:var(--blue);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="logo">A</div>
+    <div>
+      <div style="font-weight:700">AnswerCatch</div>
+      <a href="https://answercatch.com">← back to answercatch.com</a>
+    </div>
+  </div>
+
+  <h1>Free tools for service businesses</h1>
+  <p class="lede">Simple, no-signup tools for plumbers, HVAC, electricians, roofers and other home-service pros. A new one is built in public every day.</p>
+
+  <div class="grid">
+    <a class="tool" href="tools/missed-call-calculator/">
+      <div class="tag">Revenue</div>
+      <h3>Missed-Call Revenue Calculator</h3>
+      <p>See how much money missed calls cost your business every month.</p>
+    </a>
+    <div class="tool soon">
+      <div class="tag">Coming soon</div>
+      <h3>More tools daily</h3>
+      <p>New free tools land here every day. Follow along on LinkedIn & X.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    Built in public by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+    <a href="https://github.com/jayswalaman40-tech/daily-builds">source on GitHub</a><br/>
+    Powered by <a href="https://answercatch.com">AnswerCatch</a> — the 24/7 AI receptionist for home-service pros.
+  </div>
+</div>
+</body>
+</html>
