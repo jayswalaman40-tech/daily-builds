@@ -1,8 +1,0 @@
-Lead List Cleaner — run summary
-----------------------------------
-Rows in            : 10
-Clean leads out    : 5
-Dropped (bad email): 3
-Dropped (duplicate): 2
-Junk removed       : 50% of the list
-Saved              : leads_clean.csv
