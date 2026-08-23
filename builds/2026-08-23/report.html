@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Missed-Call Revenue Calculator — Run Report</title>
+<style>
+  :root{
+    --bg:#0C1017; --panel:#151B25; --panel2:#1D2635; --line:#2C3648;
+    --ink:#EDF1F7; --muted:#97A3B8; --accent:#FFB224; --ok:#3DD68C;
+    --err:#FF7A7A; --blue:#5AB0FF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',Inter,system-ui,sans-serif;padding:32px}
+  .wrap{max-width:940px;margin:0 auto}
+  .head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .logo{width:44px;height:44px;border-radius:11px;background:var(--accent);
+    color:#191100;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:23px}
+  h1{font-size:22px;margin:0}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 26px 58px}
+  .steps{display:grid;gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px}
+  .step-h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .num{width:26px;height:26px;border-radius:99px;background:rgba(255,178,36,.15);
+    border:1.5px solid var(--accent);color:var(--accent);display:flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .step-t{font-weight:600;font-size:15.5px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;
+    letter-spacing:.06em}
+  .miss{color:var(--err)} .ans{color:var(--ok)} .aft{color:var(--accent)}
+  .term{background:#000;border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;font-family:'Consolas',monospace;font-size:13px;
+    color:#E7E9EA;white-space:pre;line-height:1.5;overflow-x:auto}
+  .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+  .stat{flex:1;min-width:135px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px}
+  .stat .n{font-size:26px;font-weight:800}
+  .stat .l{color:var(--muted);font-size:12px;margin-top:2px}
+  .note{margin-top:18px;padding:14px 16px;border-radius:12px;
+    background:rgba(255,178,36,.10);border:1px solid rgba(255,178,36,.35);
+    color:var(--ink);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="logo">A</div>
+    <h1>Missed-Call Revenue Calculator — Run Report</h1>
+  </div>
+  <div class="sub">2026-08-23 · sample of 20 calls (one day, one crew) · no real customer data</div>
+
+  <div class="steps">
+
+    <div class="card">
+      <div class="step-h"><span class="num">1</span>
+        <span class="step-t">Input — a day of calls (answered vs missed)</span></div>
+      <table>
+        <tr><th>time</th><th>status</th><th>after hours</th></tr>
+        <tr><td>09:03</td><td class="miss">missed</td><td>no</td></tr>
+        <tr><td>09:47</td><td class="ans">answered</td><td>no</td></tr>
+        <tr><td>11:20</td><td class="miss">missed</td><td>no</td></tr>
+        <tr><td>18:10</td><td class="miss">missed</td><td class="aft">yes</td></tr>
+        <tr><td>20:02</td><td class="miss">missed</td><td class="aft">yes</td></tr>
+        <tr><td colspan="3" style="color:var(--muted)">…20 calls total</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="step-h"><span class="num">2</span>
+        <span class="step-t">Run the calculator</span></div>
+      <div class="term">&gt; python missed_call_calculator.py calls.csv
+
+Missed-Call Revenue Calculator
+----------------------------------
+Calls in sample     : 20
+Answered            : 9
+Missed              : 11  (55% of calls)
+  ...of which after-hours: 5
+----------------------------------
+Assumptions: avg job $450, close rate 35%
+Lost revenue (this sample): $1,732
+Projected lost / month    : $38,115</div>
+    </div>
+
+    <div class="card">
+      <div class="step-h"><span class="num">3</span>
+        <span class="step-t">Result — the leak, in numbers</span></div>
+      <div class="stats">
+        <div class="stat"><div class="n">20</div><div class="l">calls in sample</div></div>
+        <div class="stat"><div class="n" style="color:var(--err)">11</div><div class="l">missed (55%)</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)">5</div><div class="l">missed after-hours</div></div>
+        <div class="stat"><div class="n" style="color:var(--err)">~$38k</div><div class="l">lost / month (projected)</div></div>
+      </div>
+      <div class="note">Every missed call is a job that can go to a competitor. A 24/7 AI receptionist that answers, qualifies, and books recovers most of this.</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+Missed-Call Revenue Calculator
+----------------------------------
+Calls in sample     : 20
+Answered            : 9
+Missed              : 11  (55% of calls)
+  ...of which after-hours: 5
+----------------------------------
+Assumptions: avg job $450, close rate 35%
+Lost revenue (this sample): $1,732
+Projected lost / month    : $38,115
+----------------------------------
+A 24/7 receptionist that answers every call recovers most of this.
