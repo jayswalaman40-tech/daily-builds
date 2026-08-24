@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Speed-to-Lead Grader — free tool by AnswerCatch</title>
+<meta name="description" content="Grade how fast your home-service business responds to new leads, and see the projected jobs you're leaving on the table. Free, no-signup tool." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  /* page */
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=number]:focus{outline:none;border-color:var(--blue)}
+  .grade-row{display:flex;align-items:center;gap:18px;background:linear-gradient(180deg,#fff,#f6faff);border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;margin:6px 0 18px}
+  .grade-badge{flex:none;width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-size:1.8rem;font-weight:900;color:#fff}
+  .grade-A,.grade-B{background:linear-gradient(135deg,#10d9b0,#0fb894)}
+  .grade-C,.grade-D{background:linear-gradient(135deg,#ffb020,#ff8a20)}
+  .grade-F{background:linear-gradient(135deg,#e5484d,#c23238)}
+  .grade-text h3{font-size:1.1rem;margin-bottom:3px}
+  .grade-text p{color:var(--muted);font-size:.92rem;margin:0}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#f6f8fd);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat.loss{background:linear-gradient(180deg,#fff,#fff6f6);border-color:#f6d9da}
+  .stat .n{font-size:1.7rem;font-weight:900;color:var(--ink);letter-spacing:-.02em}
+  .stat.loss .n{color:var(--loss)}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .note{font-size:.85rem;color:var(--muted);margin-top:16px;line-height:1.6}
+  /* cta */
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  /* how-to + benefits */
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Speed-to-Lead Grader</span>
+    <h1>How fast do you actually call new leads back?</h1>
+    <p class="lede">The 5-minute mark is the industry line between a booked job and a lead calling your competitor. Set your numbers and get a real SLA grade.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>New leads per month</label>
+          <input type="number" id="leads" value="60" min="1" step="1" />
+        </div>
+        <div class="field">
+          <label>Avg job value ($)</label>
+          <input type="number" id="job" value="450" min="0" step="10" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Contacted within 5 minutes: <span class="val" id="fastV">50</span>%</label>
+        <input type="range" id="fast" min="0" max="100" value="50" />
+      </div>
+      <div class="field">
+        <label>Never get a response at all: <span class="val" id="noneV">5</span>%</label>
+        <input type="range" id="none" min="0" max="30" value="5" />
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Your close rate — fast leads (%)</label>
+          <input type="number" id="closeFast" value="40" min="0" max="100" step="1" />
+        </div>
+        <div class="field">
+          <label>Your close rate — slow leads (%)</label>
+          <input type="number" id="closeSlow" value="20" min="0" max="100" step="1" />
+        </div>
+      </div>
+
+      <div class="grade-row">
+        <div class="grade-badge" id="gradeBadge">A</div>
+        <div class="grade-text">
+          <h3 id="gradeTitle">SLA Grade</h3>
+          <p id="gradeSub">Based on your inputs above.</p>
+        </div>
+      </div>
+
+      <div class="out">
+        <div class="stat"><div class="n" id="fastLeads">0</div><div class="l">leads/mo answered fast</div></div>
+        <div class="stat"><div class="n" id="slowLeads">0</div><div class="l">leads/mo answered slow</div></div>
+        <div class="stat loss"><div class="n" id="lostJobs">0</div><div class="l">~jobs/mo projected lost to slow response</div></div>
+      </div>
+      <p class="note">Projected, based on your own close-rate inputs — not a universal guarantee. "Slow" = anything past the 5-minute mark, including no-response leads.</p>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Grade your speed-to-lead in 30 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Estimate your response mix</h4><p>Roughly what share of new leads do you (or your team) actually call back inside 5 minutes? Be honest — most owners overestimate.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Add your close rates</h4><p>Plug in what you typically close on a lead you reach fast vs. one you reach later, or never reach.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>See your grade</h4><p>Get an A-F SLA grade and a projected monthly job count you're leaving on the table by responding slow.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Speed is the cheapest lead source you already have</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">⏱️</div><h4>5 minutes is the line</h4><p>Most studies on inbound lead response put the 5-minute mark as the point where reply speed stops mattering as much for conversion.</p></div>
+        <div class="benefit"><div class="ic">📉</div><h4>Every hour costs you</h4><p>The longer a lead waits, the more likely they've already called — and booked with — someone else.</p></div>
+        <div class="benefit"><div class="ic">🚫</div><h4>"No response" is a full loss</h4><p>A lead you never call back isn't a slow job. It's a job you never had a chance at.</p></div>
+        <div class="benefit"><div class="ic">✅</div><h4>It's fixable without hiring</h4><p>An AI receptionist can respond to every lead in seconds, 24/7 — no missed window, no manual follow-up.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Answer every lead in seconds, not hours</h2>
+      <p>AnswerCatch is a 24/7 AI receptionist that answers, qualifies, and books the job the moment a lead comes in.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Estimates only, based on your inputs. Grade logic: A/B need 0% no-response and 60%+ answered inside 5 minutes; any no-response leads cap the grade at F.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+    function num(x){ return Math.round(x).toLocaleString("en-US"); }
+
+    function grade(pctFast, pctNone){
+      if (pctNone > 0) return "F";
+      if (pctFast >= 80) return "A";
+      if (pctFast >= 60) return "B";
+      if (pctFast >= 40) return "C";
+      if (pctFast >= 20) return "D";
+      return "F";
+    }
+    var gradeCopy = {
+      A: "Excellent. Most leads are reached inside the 5-minute window.",
+      B: "Good, but there's still a real gap costing you jobs.",
+      C: "Average. Roughly half your leads wait too long.",
+      D: "Weak. Most leads are waiting past the window that matters.",
+      F: "At risk. Either speed is too low, or leads are going unanswered entirely."
+    };
+
+    function calc(){
+      var leads = Math.max(0, +document.getElementById("leads").value || 0);
+      var job = Math.max(0, +document.getElementById("job").value || 0);
+      var pctFast = +document.getElementById("fast").value;
+      var pctNone = +document.getElementById("none").value;
+      var closeFast = +document.getElementById("closeFast").value / 100;
+      var closeSlow = +document.getElementById("closeSlow").value / 100;
+
+      document.getElementById("fastV").textContent = pctFast;
+      document.getElementById("noneV").textContent = pctNone;
+
+      var fastLeads = leads * (pctFast/100);
+      var slowLeads = leads - fastLeads;
+
+      document.getElementById("fastLeads").textContent = num(fastLeads);
+      document.getElementById("slowLeads").textContent = num(slowLeads);
+
+      var jobsAsIs = fastLeads*closeFast + slowLeads*closeSlow;
+      var jobsIfAllFast = leads*closeFast;
+      var lostJobs = Math.max(0, jobsIfAllFast - jobsAsIs);
+
+      document.getElementById("lostJobs").textContent = "~" + (Math.round(lostJobs*10)/10);
+
+      var g = grade(pctFast, pctNone);
+      var badge = document.getElementById("gradeBadge");
+      badge.textContent = g;
+      badge.className = "grade-badge grade-" + g;
+      document.getElementById("gradeTitle").textContent = "SLA Grade: " + g;
+      document.getElementById("gradeSub").textContent = gradeCopy[g];
+    }
+    ["leads","job","fast","none","closeFast","closeSlow"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", calc);
+    });
+    calc();
+  </script>
+</body>
+</html>

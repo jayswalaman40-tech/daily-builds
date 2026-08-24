@@ -1,0 +1,22 @@
+SPEED-TO-LEAD SLA REPORT
+========================================
+Leads analyzed        : 25
+Responded             : 24 (96%)
+No response logged    : 1 (4%)
+
+Avg response time     : 101.9 min
+Median response time  : 4.0 min
+
+Response speed breakdown:
+  Under 5 min  (gold)  : 13  (52%)
+  5-30 min             :  1  (4%)
+  30-60 min            :  6  (24%)
+  Over 60 min          :  4  (16%)
+  No response (24h+)   :  1  (4%)
+
+SLA Grade              : F
+
+Benchmark (industry-cited, for context only): leads contacted within
+5 minutes convert far more often than leads contacted later — most
+studies on lead response time put speed-to-lead among the single
+biggest levers on close rate for inbound leads.

@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-08-24 | [Speed-to-Lead SLA Report](builds/2026-08-24) | 25 leads → 52% answered <5min, 1 never answered, SLA grade F |
 | 2026-08-23 | [Missed-Call Revenue Calculator](builds/2026-08-23) | 20 calls → 11 missed (55%), ~$38k/mo lost |
 
 ## Structure
