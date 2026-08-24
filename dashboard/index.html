@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Content Dashboard — AnswerCatch</title>
+<style>
+  :root{
+    --ink:#0c1530; --body:#4a556e; --muted:#7b87a3; --blue:#2f6bff; --blue-dark:#1f4fd6;
+    --accent:#10d9b0; --line:#e7ebf3; --bg:#f6f8fd; --card:#fff; --navy:#060b1a;
+    --x:#111; --li:#0a66c2;
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:18px; --font:'Inter','Segoe UI',system-ui,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--body);line-height:1.6}
+  .top{background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:10}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.15rem;color:var(--ink)}
+  .logo{width:34px;height:34px;border-radius:9px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;font-weight:800}
+  .brand b{color:var(--blue)}
+  .top .right{display:flex;align-items:center;gap:12px}
+  select,button{font-family:var(--font)}
+  select{padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-weight:600;font-size:.9rem}
+  .btn{border:none;border-radius:10px;padding:9px 16px;font-weight:700;font-size:.88rem;cursor:pointer;background:var(--grad-btn);color:#fff}
+  .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .wrap{max-width:1100px;margin:0 auto;padding:26px 24px 80px}
+  .meta{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+  .meta a{color:var(--blue);text-decoration:none}
+  .status{padding:40px;text-align:center;color:var(--muted)}
+  .post{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px;box-shadow:0 2px 12px rgba(12,21,48,.05)}
+  .post-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .pill{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  .pnum{width:26px;height:26px;border-radius:8px;background:#eef3fc;color:var(--blue);font-weight:800;display:grid;place-items:center;font-size:.85rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .col{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .col-h{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);background:#fafbfe}
+  .col-h .name{font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:7px}
+  .dot{width:9px;height:9px;border-radius:99px}
+  .copy{border:none;background:var(--ink);color:#fff;border-radius:8px;padding:6px 13px;font-size:.8rem;font-weight:700;cursor:pointer}
+  .copy.done{background:var(--accent);color:#053}
+  .txt{white-space:pre-wrap;padding:14px;font-size:.9rem;color:var(--ink);max-height:340px;overflow:auto;line-height:1.55}
+  .shot{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fafbfe}
+  .shot .sh-h{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);font-size:.82rem;font-weight:700;color:var(--muted)}
+  .shot img{display:block;width:100%;max-height:420px;object-fit:contain;background:#fff}
+  .noimg{padding:14px;color:var(--muted);font-size:.85rem}
+  .hint{background:#eef3fc;border:1px solid #d9e6ff;border-radius:12px;padding:12px 16px;font-size:.86rem;color:#33507f;margin-bottom:20px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand"><span class="logo">A</span> Content <b>Dashboard</b></div>
+    <div class="right">
+      <select id="dateSel" title="Select day"></select>
+      <button class="btn ghost" id="refresh">↻ Refresh</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hint">💡 Roz subah naya build aata hai — yahan <b>Refresh</b> dabao ya date badlo. Har post ke liye <b>Copy</b> dabao, screenshot <b>Download</b> karo, phir LinkedIn/X pe daal do.</div>
+    <div class="meta" id="meta"></div>
+    <div id="posts"><div class="status">Loading latest posts…</div></div>
+  </div>
+
+<script>
+  const OWNER="jayswalaman40-tech", REPO="daily-builds", BRANCH="main";
+  const API=`https://api.github.com/repos/${OWNER}/${REPO}/contents`;
+  const RAW=`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}`;
+  const dateSel=document.getElementById("dateSel");
+  const postsEl=document.getElementById("posts");
+  const metaEl=document.getElementById("meta");
+
+  function b64utf8(b64){
+    const bytes=Uint8Array.from(atob(b64.replace(/\n/g,"")),c=>c.charCodeAt(0));
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+
+  async function loadDates(){
+    const r=await fetch(`${API}/posts?ref=${BRANCH}`);
+    if(!r.ok) throw new Error("GitHub list failed ("+r.status+")");
+    const files=await r.json();
+    const dates=files.filter(f=>/^\d{4}-\d{2}-\d{2}\.md$/.test(f.name))
+                     .map(f=>f.name.replace(".md",""))
+                     .sort().reverse();
+    dateSel.innerHTML=dates.map(d=>`<option value="${d}">${d}</option>`).join("");
+    return dates;
+  }
+
+  function parsePosts(md){
+    const out={build:"",pillars:"",posts:[]};
+    const bm=md.match(/Build of the day:\s*(.+)/i); if(bm) out.build=bm[1].trim();
+    const pm=md.match(/Pillars:\s*(.+)/i); if(pm) out.pillars=pm[1].trim();
+    const blocks=md.split(/\n##\s+Post\s+/i).slice(1);
+    for(const b of blocks){
+      const titleLine=(b.split("\n")[0]||"").trim();
+      const pillar=titleLine.replace(/^\d+\s*[—\-:]\s*/,"").trim();
+      const num=(titleLine.match(/^\d+/)||["?"])[0];
+      const x=grab(b,/###\s*X\s*\/?\s*Twitter\s*\n/i,/###\s*LinkedIn/i);
+      const li=grab(b,/###\s*LinkedIn\s*\n/i,/\*\*Attach/i);
+      const am=b.match(/\*\*Attach:\*\*\s*(.+)/i);
+      let attach=am?am[1].trim():"";
+      out.posts.push({num,pillar,x:clean(x),li:clean(li),attach});
+    }
+    return out;
+  }
+  function grab(text,startRe,endRe){
+    const s=text.search(startRe); if(s<0) return "";
+    const after=text.slice(s).replace(startRe,"");
+    const e=after.search(endRe);
+    return e<0?after:after.slice(0,e);
+  }
+  function clean(t){return (t||"").replace(/```/g,"").trim();}
+
+  function imgUrl(attach,date){
+    if(!attach||/^none$/i.test(attach)) return "";
+    let p=attach.replace(/^\.?\//,"");
+    if(!p.startsWith("builds/")&&!p.includes("/")) p="builds/"+date+"/"+p;
+    return `${RAW}/${p}`;
+  }
+
+  function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+  function render(date,data){
+    metaEl.innerHTML=`<b>${date}</b> &nbsp;·&nbsp; ${esc(data.build||"")} `+
+      `&nbsp;·&nbsp; <a href="${RAW}/posts/${date}.md" target="_blank">raw file ↗</a>`;
+    if(!data.posts.length){postsEl.innerHTML='<div class="status">No posts found for this day.</div>';return;}
+    postsEl.innerHTML=data.posts.map((p,i)=>{
+      const img=imgUrl(p.attach,date);
+      const shot=img?`<div class="shot"><div class="sh-h"><span>📸 Screenshot to attach</span>
+          <a class="copy" href="${img}" download target="_blank">Download image ↓</a></div>
+          <img src="${img}" alt="screenshot" onerror="this.parentNode.innerHTML='<div class=noimg>Screenshot not found for this post.</div>'"/></div>`
+        :`<div class="shot"><div class="noimg">No screenshot for this post.</div></div>`;
+      return `<div class="post">
+        <div class="post-h"><span class="pnum">${esc(p.num)}</span><span class="pill">${esc(p.pillar)}</span></div>
+        <div class="grid">
+          <div class="col">
+            <div class="col-h"><span class="name"><span class="dot" style="background:var(--x)"></span>X / Twitter</span>
+              <button class="copy" data-copy="x-${i}">Copy</button></div>
+            <div class="txt" id="x-${i}">${esc(p.x)}</div>
+          </div>
+          <div class="col">
+            <div class="col-h"><span class="name"><span class="dot" style="background:var(--li)"></span>LinkedIn</span>
+              <button class="copy" data-copy="li-${i}">Copy</button></div>
+            <div class="txt" id="li-${i}">${esc(p.li)}</div>
+          </div>
+        </div>
+        ${shot}
+      </div>`;
+    }).join("");
+
+    postsEl.querySelectorAll(".copy[data-copy]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const el=document.getElementById(btn.dataset.copy);
+        navigator.clipboard.writeText(el.innerText).then(()=>{
+          btn.textContent="✓ Copied";btn.classList.add("done");
+          setTimeout(()=>{btn.textContent="Copy";btn.classList.remove("done");},1500);
+        });
+      });
+    });
+  }
+
+  async function loadDate(date){
+    postsEl.innerHTML='<div class="status">Loading '+date+'…</div>';
+    const r=await fetch(`${API}/posts/${date}.md?ref=${BRANCH}`);
+    if(!r.ok){postsEl.innerHTML='<div class="status">Could not load '+date+' ('+r.status+').</div>';return;}
+    const j=await r.json();
+    render(date,parsePosts(b64utf8(j.content)));
+  }
+
+  async function init(){
+    try{
+      const dates=await loadDates();
+      if(!dates.length){postsEl.innerHTML='<div class="status">No posts yet. First one arrives tomorrow 9 AM IST.</div>';return;}
+      await loadDate(dates[0]);
+    }catch(e){
+      postsEl.innerHTML='<div class="status">Error: '+e.message+'<br/>Internet on hai? GitHub rate-limit (60/hr) ho sakta hai — thodi der baad Refresh.</div>';
+    }
+  }
+  dateSel.addEventListener("change",()=>loadDate(dateSel.value));
+  document.getElementById("refresh").addEventListener("click",init);
+  init();
+</script>
+</body>
+</html>
