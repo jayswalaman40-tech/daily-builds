@@ -1,0 +1,14 @@
+Quotes analyzed        : 20
+Target margin          : 30%
+Average actual margin  : 41.5%
+Quotes below target    : 6 (30%)
+$ left on the table     : $201  (this batch)
+
+Worst-margin jobs (below target):
+  Q105  Faucet install                   margin   1.7%  quoted $150  should be ~$211  (short $61)
+  Q102  Drain cleaning                   margin   6.7%  quoted $150  should be ~$200  (short $50)
+  Q118  Leaky pipe fix                   margin  13.5%  quoted $130  should be ~$161  (short $31)
+  Q113  Thermostat install               margin  17.6%  quoted $170  should be ~$200  (short $30)
+  Q106  Furnace tune-up                  margin  20.3%  quoted $160  should be ~$182  (short $22)
+
+Projected monthly leak (~40 jobs/mo, same underpriced rate): ~$401/mo

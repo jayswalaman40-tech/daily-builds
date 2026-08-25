@@ -1,0 +1,21 @@
+job_id,job_type,labor_hours,labor_rate,materials_cost,trip_fee,quoted_price
+Q101,Water heater replacement,3.5,45,420,25,900
+Q102,Drain cleaning,2,45,25,25,150
+Q103,AC repair,2,48,120,25,420
+Q104,Panel upgrade,6,48,650,25,1650
+Q105,Faucet install,1.5,45,55,25,150
+Q106,Furnace tune-up,1.5,45,35,25,160
+Q107,Roof leak repair,4,42,140,0,520
+Q108,Toilet replacement,2,45,90,25,340
+Q109,Ductless mini-split install,8,48,1300,25,2900
+Q110,Circuit breaker swap,1,48,30,25,140
+Q111,Sump pump install,3,45,200,25,650
+Q112,Gutter cleaning,2,35,0,0,150
+Q113,Thermostat install,1,45,70,25,170
+Q114,Sewer line camera inspect,2,45,0,25,220
+Q115,Outlet install (x4),2.5,48,35,25,300
+Q116,Water softener install,4,45,420,25,1050
+Q117,AC full replacement,10,48,2200,0,4800
+Q118,Leaky pipe fix,1.5,45,20,25,130
+Q119,Landscape lighting install,3,40,180,0,540
+Q120,Emergency after-hours heat repair,2,65,55,45,650
