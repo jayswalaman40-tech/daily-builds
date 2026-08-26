@@ -1,0 +1,21 @@
+job_id,customer,day_of_week,hours_notice,confirmed,prior_no_shows,job_value
+1001,J. Alvarez,Mon,72,yes,0,320
+1002,R. Chen,Fri,4,no,1,450
+1003,T. Osei,Wed,48,yes,0,275
+1004,M. Patel,Sat,2,no,2,600
+1005,S. Novak,Tue,96,yes,0,180
+1006,D. Reyes,Fri,3,no,0,390
+1007,K. Iverson,Thu,24,yes,1,510
+1008,B. Whitfield,Mon,1,no,3,275
+1009,L. Guerrero,Wed,120,yes,0,340
+1010,A. Kowalski,Sat,6,no,1,720
+1011,P. Mensah,Tue,50,yes,0,210
+1012,C. Delgado,Fri,5,no,0,460
+1013,N. Fournier,Thu,30,yes,0,300
+1014,W. Okafor,Mon,2,no,2,395
+1015,E. Sandoval,Sat,80,yes,0,255
+1016,G. Larsen,Wed,3,no,1,610
+1017,H. Marsh,Tue,60,yes,0,190
+1018,F. Bianchi,Fri,1,no,4,330
+1019,I. Castellano,Thu,90,yes,0,275
+1020,V. Petrova,Sat,4,no,0,540

@@ -1,0 +1,23 @@
+NO-SHOW PREDICTOR — this week's booked jobs
+====================================================
+Jobs scanned: 20
+Total booked revenue: $7,625
+
+High risk:   10 jobs  ($4,770 at risk)
+Medium risk: 0 jobs  ($0 at risk)
+Low risk:    10 jobs
+
+-> 50% of this week's jobs are high no-show risk,
+   representing 63% of booked revenue ($4,770).
+
+Top 5 highest-risk appointments:
+Job   Customer        Day  Notice   Confirmed  PriorNS  Score  Value    
+1004  M. Patel        Sat  2h       no         2        100    $600
+1008  B. Whitfield    Mon  1h       no         3        100    $275
+1018  F. Bianchi      Fri  1h       no         4        100    $330
+1014  W. Okafor       Mon  2h       no         2        94     $395
+1002  R. Chen         Fri  4h       no         1        90     $450
+
+Recommendation: send a confirmation text 24h before + a same-day
+reminder to every High-risk job. That's the cheapest lever that
+moves a no-show back into a kept appointment.

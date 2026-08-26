@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>No-Show Predictor — free tool by AnswerCatch</title>
+<meta name="description" content="Score any booked job for no-show risk in seconds and see how much revenue is riding on it. Free, no-signup tool for home-service businesses." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  /* page */
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number],select{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600;appearance:none}
+  input[type=number]:focus,select:focus{outline:none;border-color:var(--blue)}
+  .toggle-row{display:flex;gap:10px}
+  .toggle-btn{flex:1;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg-soft);color:var(--body);font-weight:700;font-size:.95rem;cursor:pointer;font-family:var(--font);transition:all .15s ease}
+  .toggle-btn.active{background:var(--grad-btn);color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(47,107,255,.3)}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#fff6f6);border:1px solid #f6d9da;border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat.ok{background:linear-gradient(180deg,#fff,#f2fffb);border-color:#c9f3e6}
+  .stat .n{font-size:1.9rem;font-weight:900;color:var(--loss);letter-spacing:-.02em}
+  .stat.ok .n{color:var(--accent)}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .tier-banner{border-radius:var(--radius-sm);padding:16px 20px;margin-top:6px;text-align:center;font-weight:800;font-size:1.05rem}
+  .tier-High{background:rgba(229,72,77,.1);color:var(--loss)}
+  .tier-Medium{background:rgba(255,171,0,.12);color:#b45f00}
+  .tier-Low{background:rgba(16,217,176,.12);color:#0a9a7f}
+  /* cta */
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  /* how-to + benefits */
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">No-Show Predictor</span>
+    <h1>Will this job show up?</h1>
+    <p class="lede">Score any booked appointment for no-show risk before you drive out there — and see the revenue that's actually riding on it.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Notice given: <span class="val" id="noticeV">24</span>h</label>
+          <input type="range" id="notice" min="1" max="120" value="24" />
+        </div>
+        <div class="field">
+          <label>Job value ($)</label>
+          <input type="number" id="value" value="400" min="0" step="10" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Appointment confirmed?</label>
+          <div class="toggle-row">
+            <button type="button" class="toggle-btn active" id="confYes">Yes</button>
+            <button type="button" class="toggle-btn" id="confNo">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Day of week</label>
+          <select id="day">
+            <option>Mon</option><option>Tue</option><option>Wed</option>
+            <option>Thu</option><option selected>Fri</option><option>Sat</option><option>Sun</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:6px">
+        <label>Prior no-shows by this customer: <span class="val" id="priorV">0</span></label>
+        <input type="range" id="prior" min="0" max="5" value="0" />
+      </div>
+
+      <div id="tierBanner" class="tier-banner tier-Low">Low risk — book with confidence</div>
+      <div class="out">
+        <div class="stat"><div class="n" id="score">0</div><div class="l">risk score / 100</div></div>
+        <div class="stat"><div class="n" id="prob">0%</div><div class="l">no-show probability</div></div>
+        <div class="stat ok"><div class="n" id="risk">$0</div><div class="l">revenue at risk</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Score a job in 15 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Enter the booking details</h4><p>How much notice you gave, whether it's confirmed, the day of week, and this customer's no-show history.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Read the score</h4><p>The risk score and tier tell you which jobs are genuinely likely to fall through.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Act on High risk</h4><p>Send a confirmation text or call the day before. It's the cheapest fix for the most expensive problem.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>A no-show costs more than the missed job</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">🚐</div><h4>Wasted truck time</h4><p>A no-show doesn't just lose the job — it burns the drive time and the slot another customer could've had.</p></div>
+        <div class="benefit"><div class="ic">📉</div><h4>It's predictable</h4><p>Short notice, unconfirmed bookings, and repeat offenders show up in the data before they show up as an empty driveway.</p></div>
+        <div class="benefit"><div class="ic">💬</div><h4>Reminders work</h4><p>A simple confirmation text the day before is proven to cut no-show rates significantly across service industries.</p></div>
+        <div class="benefit"><div class="ic">🤖</div><h4>It can run itself</h4><p>An AI receptionist can auto-confirm every booking and re-engage no-reply customers, so nothing falls through the cracks.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Never chase a confirmation again</h2>
+      <p>AnswerCatch answers calls, books jobs, and follows up automatically — so every appointment gets confirmed without you lifting a finger.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Estimates only, based on your inputs — a simple scoring model, not a guarantee.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var confirmed = true;
+    var HIGH_RISK_DAYS = {"Fri":1,"Sat":1};
+
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+
+    function riskScore(notice, conf, prior, day){
+      var score = 10;
+      if (notice < 6) score += 35;
+      else if (notice < 24) score += 20;
+      else if (notice < 48) score += 8;
+      if (!conf) score += 25;
+      score += Math.min(prior, 3) * 12;
+      if (HIGH_RISK_DAYS[day]) score += 8;
+      return Math.min(score, 100);
+    }
+
+    function tierOf(score){
+      if (score >= 60) return "High";
+      if (score >= 35) return "Medium";
+      return "Low";
+    }
+
+    function calc(){
+      var notice = +document.getElementById("notice").value;
+      var value = +document.getElementById("value").value || 0;
+      var prior = +document.getElementById("prior").value;
+      var day = document.getElementById("day").value;
+      document.getElementById("noticeV").textContent = notice;
+      document.getElementById("priorV").textContent = prior;
+
+      var score = riskScore(notice, confirmed, prior, day);
+      var tier = tierOf(score);
+      var prob = score; // score doubles as an approximate no-show probability
+      var atRisk = value * (prob / 100);
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("prob").textContent = prob + "%";
+      document.getElementById("risk").textContent = money(atRisk);
+
+      var banner = document.getElementById("tierBanner");
+      banner.className = "tier-banner tier-" + tier;
+      var msg = tier === "High" ? "High risk — confirm today or this slot is likely wasted"
+              : tier === "Medium" ? "Medium risk — send a reminder to be safe"
+              : "Low risk — book with confidence";
+      banner.textContent = msg;
+    }
+
+    document.getElementById("confYes").addEventListener("click", function(){
+      confirmed = true;
+      this.classList.add("active");
+      document.getElementById("confNo").classList.remove("active");
+      calc();
+    });
+    document.getElementById("confNo").addEventListener("click", function(){
+      confirmed = false;
+      this.classList.add("active");
+      document.getElementById("confYes").classList.remove("active");
+      calc();
+    });
+    ["notice","value","prior","day"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", calc);
+    });
+    calc();
+  </script>
+</body>
+</html>
