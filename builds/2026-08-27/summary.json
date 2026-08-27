@@ -1,0 +1,10 @@
+{
+  "total_appointments": 12,
+  "reminders_due_now": 11,
+  "reminders_pct": 91.7,
+  "total_job_value": 4865,
+  "value_covered_by_reminders": 4655,
+  "projected_noshow_reduction_pct": 30,
+  "projected_noshows_avoided": 0.6,
+  "projected_value_protected": 263
+}

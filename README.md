@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-08-27 | [Appointment Reminder Generator](builds/2026-08-27) | 12 bookings → 11 (92%) had a reminder due now, $4,655 job value covered |
 | 2026-08-26 | [No-Show Predictor](builds/2026-08-26) | 20 booked jobs → 10 (50%) high risk, $4,770 (63% of revenue) at risk |
 | 2026-08-25 | [Job Quote & Margin Checker](builds/2026-08-25) | 20 quotes → 6 (30%) underpriced, $201 left on the table |
 | 2026-08-24 | [Speed-to-Lead SLA Report](builds/2026-08-24) | 25 leads → 52% answered <5min, 1 never answered, SLA grade F |

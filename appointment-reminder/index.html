@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Appointment Reminder Generator — free tool by AnswerCatch</title>
+<meta name="description" content="Turn today's booked jobs into ready-to-send SMS reminder text at the 24h and 2h windows. Free, no-signup tool for home-service businesses." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  /* page */
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number],input[type=text]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=number]:focus,input[type=text]:focus{outline:none;border-color:var(--blue)}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#f4fbf9);border:1px solid #cdeee4;border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat.warn{background:linear-gradient(180deg,#fff,#fff6f6);border-color:#f6d9da}
+  .stat .n{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em}
+  .stat.warn .n{color:var(--loss)}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .divider{height:1px;background:var(--line);margin:22px 0}
+  .subhead{font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:14px}
+  .queue{display:grid;gap:12px}
+  .msg{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 18px}
+  .msg .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .msg .who{font-weight:800;color:var(--ink);font-size:.98rem}
+  .msg .tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:20px}
+  .tag.h24{background:var(--blue)}
+  .tag.h2{background:var(--accent)}
+  .msg .body{color:var(--body);font-size:.95rem;font-style:italic}
+  .empty{color:var(--muted);font-size:.95rem;text-align:center;padding:20px 0}
+  .note{font-size:.82rem;color:var(--muted);margin-top:14px;line-height:1.6}
+  /* cta */
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  /* how-to + benefits */
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Reminder Generator</span>
+    <h1>Turn today's bookings into ready-to-send reminders</h1>
+    <p class="lede">Add your booked jobs below. The tool auto-generates the SMS reminder text due right now — at the 24h and 2h windows — so nobody has to remember to send it.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Your business name</label>
+          <input type="text" id="bizName" value="Your Company" />
+        </div>
+        <div class="field">
+          <label>Your callback number</label>
+          <input type="text" id="bizPhone" value="(555) 010-0000" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="subhead">Booked jobs</div>
+      <div id="jobRows"></div>
+      <button class="btn" id="addRow" style="background:var(--bg-alt);color:var(--blue);margin-top:4px;">+ Add job</button>
+
+      <div class="divider"></div>
+      <div class="out">
+        <div class="stat"><div class="n" id="dueNow">0</div><div class="l">reminders due now</div></div>
+        <div class="stat"><div class="n" id="valueCovered">$0</div><div class="l">job value covered</div></div>
+        <div class="stat warn"><div class="n" id="valueProtected">$0</div><div class="l">~value protected (projected)</div></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="subhead">Messages generated right now</div>
+      <div class="queue" id="queue"></div>
+      <p class="note">"~value protected" projects a ~30% no-show reduction on an ~18% baseline no-show rate for jobs with a reminder due — a commonly cited industry range, not a measured result for your business.</p>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>From booking list to sent text in under a minute</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>List today's bookings</h4><p>Add each job's customer, service, hours until the appointment, and job value. Use "Add job" for more rows.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Let it find the due ones</h4><p>The tool checks every job against the 24h and 2h reminder windows and writes the exact text for the ones due right now.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Copy, paste, send</h4><p>Copy each message into your phone, SMS platform, or WhatsApp Business and send. No new software required.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>A reminder is the cheapest fix for a no-show</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">📵</div><h4>No-shows are rarely spite</h4><p>Most no-shows are just forgetting. A well-timed text is often all it takes to keep the slot.</p></div>
+        <div class="benefit"><div class="ic">⏰</div><h4>Timing is the whole game</h4><p>A reminder sent 24h out catches people who need to rearrange their day. One at 2h out catches last-minute forgetting.</p></div>
+        <div class="benefit"><div class="ic">🧾</div><h4>Consistency beats memory</h4><p>The moment reminders depend on someone remembering to send them, they stop happening on the busy days.</p></div>
+        <div class="benefit"><div class="ic">✅</div><h4>It's a 2-minute habit</h4><p>Run this before your morning routine and again after lunch, and every job gets its reminder without extra software.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Never chase a forgotten appointment again</h2>
+      <p>AnswerCatch answers every call, books the job, and can handle reminder follow-ups automatically — so this becomes one less thing on your list.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Sample tool only — no messages are actually sent. Uses your entered hours-until value, not live time.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var WINDOWS = [
+      { key: "24h", low: 22, high: 26, label: "24H",
+        template: function(first,biz,service,phone){ return "Hi " + first + ", this is " + biz + ", reminding you: your " + service + " appointment is tomorrow. Reply Y to confirm or call " + phone + " to reschedule."; } },
+      { key: "2h", low: 0.5, high: 3.5, label: "2H",
+        template: function(first,biz,service,phone,hours){ return "Hi " + first + ", " + biz + " here — we're on our way for your " + service + " today, arriving in about " + hours + "h. Reply if anything's changed!"; } }
+    ];
+    var BASELINE_NOSHOW = 0.18, REDUCTION = 0.30;
+
+    var sample = [
+      { name: "D. Alvarez", service: "Drain cleaning", hours: 24, value: 220 },
+      { name: "K. Brooks", service: "Leak inspection", hours: 2.3, value: 190 },
+      { name: "T. Nguyen", service: "Pipe replacement", hours: 1.8, value: 650 },
+      { name: "S. Patel", service: "Faucet install", hours: 47, value: 210 }
+    ];
+
+    var rowsEl = document.getElementById("jobRows");
+
+    function firstName(name){
+      var parts = name.trim().split(/\s+/);
+      return parts[parts.length-1].replace(".", "");
+    }
+
+    function makeRow(job){
+      var row = document.createElement("div");
+      row.className = "row";
+      row.style.marginBottom = "6px";
+      row.innerHTML =
+        '<div class="field" style="margin-bottom:8px;"><label>Customer</label><input type="text" class="j-name" value="'+job.name+'" /></div>' +
+        '<div class="field" style="margin-bottom:8px;"><label>Service</label><input type="text" class="j-service" value="'+job.service+'" /></div>' +
+        '<div class="field" style="margin-bottom:8px;"><label>Hours until job</label><input type="number" step="0.1" class="j-hours" value="'+job.hours+'" /></div>' +
+        '<div class="field" style="margin-bottom:8px;"><label>Job value ($)</label><input type="number" class="j-value" value="'+job.value+'" /></div>';
+      rowsEl.appendChild(row);
+      row.querySelectorAll("input").forEach(function(inp){ inp.addEventListener("input", calc); });
+    }
+
+    sample.forEach(makeRow);
+
+    document.getElementById("addRow").addEventListener("click", function(e){
+      e.preventDefault();
+      makeRow({ name: "New Customer", service: "Service call", hours: 24, value: 250 });
+      calc();
+    });
+
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+
+    function calc(){
+      var rows = rowsEl.querySelectorAll(".row");
+      var due = [];
+      var totalValue = 0, coveredValue = 0;
+
+      rows.forEach(function(row){
+        var name = row.querySelector(".j-name").value || "Customer";
+        var service = row.querySelector(".j-service").value || "service";
+        var hours = parseFloat(row.querySelector(".j-hours").value) || 0;
+        var value = parseFloat(row.querySelector(".j-value").value) || 0;
+        totalValue += value;
+
+        for (var i=0;i<WINDOWS.length;i++){
+          var w = WINDOWS[i];
+          if (hours >= w.low && hours <= w.high){
+            var biz = document.getElementById("bizName").value || "Your Company";
+            var phone = document.getElementById("bizPhone").value || "";
+            var msg = w.template(firstName(name), biz, service.toLowerCase(), phone, Math.round(hours*10)/10);
+            due.push({ name: name, service: service, value: value, key: w.key, label: w.label, msg: msg });
+            coveredValue += value;
+            break;
+          }
+        }
+      });
+
+      document.getElementById("dueNow").textContent = due.length;
+      document.getElementById("valueCovered").textContent = money(coveredValue);
+      document.getElementById("valueProtected").textContent = money(coveredValue * BASELINE_NOSHOW * REDUCTION);
+
+      var queue = document.getElementById("queue");
+      queue.innerHTML = "";
+      if (due.length === 0){
+        queue.innerHTML = '<div class="empty">No reminders due right now — try setting a job to 24 or 2 hours out.</div>';
+        return;
+      }
+      due.forEach(function(d){
+        var el = document.createElement("div");
+        el.className = "msg";
+        el.innerHTML =
+          '<div class="top"><span class="who">'+d.name+' — '+d.service+' ($'+Math.round(d.value)+')</span>' +
+          '<span class="tag '+(d.key==='24h'?'h24':'h2')+'">'+d.label+' window</span></div>' +
+          '<div class="body">"'+d.msg+'"</div>';
+        queue.appendChild(el);
+      });
+    }
+
+    document.getElementById("bizName").addEventListener("input", calc);
+    document.getElementById("bizPhone").addEventListener("input", calc);
+    calc();
+  </script>
+</body>
+</html>

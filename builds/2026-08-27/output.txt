@@ -1,0 +1,42 @@
+=== Appointment Reminder Generator ===
+Business: Rivera Plumbing Co.
+Run time: sample batch (not wall-clock; hours_until is pre-set per appointment)
+
+Appointments in batch: 12
+Reminders due right now: 11 (92%)
+  - 24h-window reminders: 5
+  - 2h-window reminders:  6
+Booked job value in this batch: $4,865
+Job value covered by today's reminders: $4,655
+
+[PROJECTED] Using a 18% baseline no-show rate and a 30% reduction from consistent reminders:
+[PROJECTED]   ~0.6 no-shows avoided across this batch
+[PROJECTED]   ~$263 in job value protected
+(Projections only -- based on commonly cited industry ranges, not a measured client result.)
+
+--- Messages generated right now ---
+[24h | D. Alvarez | Drain cleaning | $220]
+  "Hi Alvarez, this is Rivera Plumbing Co., reminding you: your drain cleaning appointment is tomorrow. Reply Y to confirm or call (555) 019-2288 to reschedule."
+[24h | M. Chen | Water heater repair | $480]
+  "Hi Chen, this is Rivera Plumbing Co., reminding you: your water heater repair appointment is tomorrow. Reply Y to confirm or call (555) 019-2288 to reschedule."
+[2h | K. Brooks | Leak inspection | $190]
+  "Hi Brooks, Rivera Plumbing Co. here -- we're on our way for your leak inspection today, arriving in about 2.3h. Reply if anything's changed!"
+[2h | T. Nguyen | Pipe replacement | $650]
+  "Hi Nguyen, Rivera Plumbing Co. here -- we're on our way for your pipe replacement today, arriving in about 1.8h. Reply if anything's changed!"
+[24h | J. Romero | Sump pump service | $340]
+  "Hi Romero, this is Rivera Plumbing Co., reminding you: your sump pump service appointment is tomorrow. Reply Y to confirm or call (555) 019-2288 to reschedule."
+[2h | L. Foster | Drain cleaning | $220]
+  "Hi Foster, Rivera Plumbing Co. here -- we're on our way for your drain cleaning today, arriving in about 2.0h. Reply if anything's changed!"
+[2h | A. Kim | Water heater install | $1450]
+  "Hi Kim, Rivera Plumbing Co. here -- we're on our way for your water heater install today, arriving in about 0.7h. Reply if anything's changed!"
+[24h | R. Diaz | Toilet repair | $160]
+  "Hi Diaz, this is Rivera Plumbing Co., reminding you: your toilet repair appointment is tomorrow. Reply Y to confirm or call (555) 019-2288 to reschedule."
+[2h | B. Walsh | Leak inspection | $190]
+  "Hi Walsh, Rivera Plumbing Co. here -- we're on our way for your leak inspection today, arriving in about 3.4h. Reply if anything's changed!"
+[24h | C. Nolan | Gas line check | $275]
+  "Hi Nolan, this is Rivera Plumbing Co., reminding you: your gas line check appointment is tomorrow. Reply Y to confirm or call (555) 019-2288 to reschedule."
+[2h | P. Osei | Water heater repair | $480]
+  "Hi Osei, Rivera Plumbing Co. here -- we're on our way for your water heater repair today, arriving in about 1.2h. Reply if anything's changed!"
+
+--- Not due yet (1) ---
+  S. Patel — Faucet install — 47.5h out, no reminder window hit
