@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Review-Request Generator — AnswerCatch</title>
+<meta name="description" content="Free tool that writes a ready-to-send text + email asking happy customers for a Google review." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{--navy:#060b1a;--ink:#0c1530;--body:#4a556e;--muted:#7b87a3;--blue:#2f6bff;--blue-dark:#1f4fd6;--cyan:#22d3ee;--accent:#10d9b0;--loss:#e5484d;--line:#e7ebf3;--bg:#fff;--bg-soft:#f6f8fd;--bg-alt:#eef3fc;--grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);--grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);--radius:20px;--radius-sm:12px;--shadow-sm:0 2px 12px rgba(12,21,48,.06);--shadow:0 16px 40px rgba(12,21,48,.10);--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}.btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}.val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=text],input[type=number],input[type=url],select,textarea{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue)}
+  textarea{resize:vertical;min-height:70px;line-height:1.5}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}@media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#f4f9ff);border:1px solid #d9e6ff;border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat.loss{background:linear-gradient(180deg,#fff,#fff6f6);border-color:#f6d9da}.stat.loss .n{color:var(--loss)}
+  .stat.good{background:linear-gradient(180deg,#fff,#f2fbf8);border-color:#c7efe4}.stat.good .n{color:#0a9d78}
+  .stat .n{font-size:1.9rem;font-weight:900;color:var(--blue);letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .gen{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}
+  .gen .gh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .gen .gh b{color:var(--ink);font-size:.9rem}
+  .copy{border:none;background:var(--ink);color:#fff;border-radius:8px;padding:7px 14px;font-size:.82rem;font-weight:700;cursor:pointer}
+  .copy.done{background:var(--accent);color:#053}
+  .gtext{white-space:pre-wrap;color:var(--ink);font-size:.95rem;line-height:1.55}
+  .note{background:var(--bg-alt);border:1px solid #d9e6ff;border-radius:10px;padding:11px 14px;font-size:.9rem;color:#33507f;margin-top:6px}
+  .sec{margin:40px 0}.sec .eyebrow{display:block}.sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}.step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}.benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header"><div class="container nav">
+    <a class="brand" href="/"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>Answer<b>Catch</b></a>
+    <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/how-it-works">How It Works</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/tools/" class="active">Free Tools</a></li><li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li></ul>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div></header>
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Review Generator</span>
+    <h1>Turn happy customers into 5-star reviews</h1>
+    <p class="lede">Most customers would leave a review — they just never get asked. Fill this in and get a ready-to-send text + email in your voice.</p>
+    <div class="card">
+      <div class="row">
+        <div class="field"><label>Your business name</label><input type="text" id="biz" value="Rapid Comfort HVAC" /></div>
+        <div class="field"><label>Customer's first name</label><input type="text" id="cust" value="Mike" /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Job you did</label><input type="text" id="job" value="AC tune-up" /></div>
+        <div class="field"><label>Your Google review link</label><input type="url" id="link" value="https://g.page/r/yourbusiness/review" /></div>
+      </div>
+      <div class="gen"><div class="gh"><b>📱 Text message (SMS)</b><button class="copy" data-c="sms">Copy</button></div><div class="gtext" id="sms"></div></div>
+      <div class="gen"><div class="gh"><b>✉ Email</b><button class="copy" data-c="email">Copy</button></div><div class="gtext" id="email"></div></div>
+      <div class="note">Tip: send it within 24 hours of finishing the job, while they're still happy. That's when review rates are highest.</div>
+    </div>
+    <div class="sec"><span class="eyebrow">How to use it</span><h2>3 steps to more reviews</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Fill in the job</h4><p>Business name, the customer's first name, what you did, and your Google review link.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Copy the message</h4><p>Grab the text or email version — already written in a friendly, non-pushy tone.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Send it same-day</h4><p>Text beats email for reviews. Send while the job's fresh and watch the stars roll in.</p></div></div>
+      </div>
+    </div>
+    <div class="sec"><span class="eyebrow">Why it matters</span><h2>Reviews are how home-service gets found</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">⭐</div><h4>More reviews = more calls</h4><p>People pick the top-rated shop on Google. Fewer reviews than the guy down the road? You lose the click.</p></div>
+        <div class="benefit"><div class="ic">🙋</div><h4>They just need to be asked</h4><p>Happy customers rarely think to review on their own. A simple text turns them into 5-star proof.</p></div>
+        <div class="benefit"><div class="ic">⏱️</div><h4>Timing is everything</h4><p>Ask within a day and review rates jump. Wait a week and they've moved on.</p></div>
+        <div class="benefit"><div class="ic">📈</div><h4>It compounds</h4><p>Every review makes the next lead trust you more — and pushes you above competitors in the map pack.</p></div>
+      </div>
+    </div>
+    <div class="cta"><h2>More reviews mean more calls. Answer every one.</h2><p>AnswerCatch is a 24/7 AI receptionist that answers, qualifies, and books every call — so the leads your reviews bring in never slip away.</p><a class="btn" href="/signup">Book a free demo →</a></div>
+    <script>
+      function g(id){return document.getElementById(id).value.trim();}
+      function build(){
+        var biz=g('biz')||'our team',cust=g('cust')||'there',job=g('job')||'the job',link=g('link')||'[your review link]';
+        document.getElementById('sms').textContent="Hi "+cust+", thanks for choosing "+biz+" for your "+job+"! If we did a good job, a quick Google review would mean the world to a small business like ours: "+link+" — thank you! 🙏";
+        document.getElementById('email').textContent="Subject: Quick favor, "+cust+"?\n\nHi "+cust+",\n\nThanks again for letting "+biz+" handle your "+job+" — it was a pleasure working with you.\n\nIf you were happy with how it went, would you mind leaving us a quick review? It takes 30 seconds and helps other neighbors find us:\n"+link+"\n\nReally appreciate it.\n\n— The "+biz+" team";
+      }
+      ['biz','cust','job','link'].forEach(function(id){document.getElementById(id).addEventListener('input',build);});
+      build();
+      document.querySelectorAll('.copy').forEach(function(b){b.onclick=function(){navigator.clipboard.writeText(document.getElementById(b.dataset.c).innerText).then(function(){b.textContent='✓ Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy';b.classList.remove('done');},1400);});};});
+    </script>
+    <div class="foot">A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> · <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a></div>
+  </div>
+</body></html>

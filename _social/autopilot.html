@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+  :root{--blue:#2f6bff;--cyan:#22d3ee;--accent:#10d9b0;--ink:#0c1530;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1200px;height:1200px;font-family:'Inter',sans-serif;color:#fff;
+    background:radial-gradient(1200px 700px at 78% -12%,#16307a,transparent 58%),radial-gradient(900px 600px at 8% 8%,#241a6b,transparent 55%),linear-gradient(165deg,#060b1a,#0a1430 55%,#0c1c46);
+    padding:80px 76px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .grid-bg{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 40%,transparent 78%)}
+  .top{display:flex;align-items:center;gap:14px;position:relative}
+  .logo{width:56px;height:56px;border-radius:15px;background:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);display:grid;place-items:center;font-weight:900;font-size:30px;box-shadow:0 8px 22px rgba(47,107,255,.5)}
+  .brandname{font-weight:800;font-size:27px;letter-spacing:-.02em}
+  .badge{margin-left:auto;font-size:19px;font-weight:700;color:#68f0d3;background:rgba(16,217,176,.12);border:1px solid rgba(16,217,176,.34);padding:9px 20px;border-radius:999px}
+  .mid{position:relative}
+  .kick{color:#7db4ff;font-weight:800;font-size:24px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:26px}
+  h1{font-size:92px;line-height:1.02;font-weight:900;letter-spacing:-.03em}
+  h1 .g{background:linear-gradient(120deg,#7db4ff,#b9e6ff 55%,#7ff0dc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub{color:#b6c8e6;font-size:31px;margin-top:26px;font-weight:500;max-width:900px;line-height:1.4}
+  .pipe{display:flex;gap:16px;margin-top:52px}
+  .step{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:26px 18px;text-align:center}
+  .step .e{font-size:44px}
+  .step .t{font-weight:800;font-size:25px;margin-top:12px}
+  .step .d{color:#9fb4d6;font-size:18px;margin-top:5px}
+  .arrow{align-self:center;color:#4d6aa0;font-size:34px;font-weight:800}
+  .foot{position:relative;display:flex;align-items:center;justify-content:space-between}
+  .stat{font-size:30px;font-weight:800}
+  .stat b{color:var(--accent)}
+  .url{font-size:26px;color:#8fb2 e6;color:#9fb4d6;font-weight:700}
+</style></head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="top">
+    <div class="logo">A</div>
+    <div class="brandname">AnswerCatch</div>
+    <div class="badge">● building in public</div>
+  </div>
+
+  <div class="mid">
+    <div class="kick">I built an AI agent that</div>
+    <h1>Ships a tool +<br/>3 posts <span class="g">every day.</span><br/>On autopilot.</h1>
+    <div class="sub">Every morning it builds a real tool, proves it works, writes the posts, and publishes — with zero manual work.</div>
+    <div class="pipe">
+      <div class="step"><div class="e">🛠️</div><div class="t">Build</div><div class="d">a real tool</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="e">📸</div><div class="t">Prove</div><div class="d">run + screenshot</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="e">✍️</div><div class="t">Post</div><div class="d">3 ready posts</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="e">🚀</div><div class="t">Publish</div><div class="d">live on site</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="stat">2 tools shipped · <b>0 min</b> manual work</div>
+    <div class="url">answercatch.com/tools</div>
+  </div>
+</body></html>
