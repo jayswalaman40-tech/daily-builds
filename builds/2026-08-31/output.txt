@@ -1,0 +1,15 @@
+Call                             Window                  Dispatch  Rate/hr  Job total  vs normal
+------------------------------------------------------------------------------------------------
+Burst pipe - Sat 11pm            Weekend, 9pm-8am       $    200 $   166/hr $     449 +216%
+No heat - Sun 7am                Weekend, 8am-5pm       $    100 $   126/hr $     289 +114%
+AC down - Tue 6:30pm             Weekday, 5pm-9pm       $     75 $   119/hr $     253 + 78%
+Sewer backup - Wed 2am           Weekday, 9pm-8am       $    175 $   152/hr $     403 +184%
+Water heater - Fri 8pm           Weekday, 5pm-9pm       $     75 $   112/hr $     243 + 80%
+Power outage - Sat 3pm           Weekend, 8am-5pm       $    100 $   140/hr $     310 +107%
+Gas smell - Thu 10:15pm          Weekday, 9pm-8am       $    175 $   152/hr $     403 +184%
+No heat - Thanksgiving Day       Major holiday, any time $    275 $   180/hr $     545 +304%
+------------------------------------------------------------------------------------------------
+Calls logged: 8
+Total job revenue if priced right: $2,895
+Total left on the table if all charged at normal daytime rate: $1,772
+Average after-hours premium recommended: 158%
