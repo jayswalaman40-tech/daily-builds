@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-02 | [True Hourly Rate Calculator](builds/2026-09-02) | Sample solo profile: $28,800/yr overhead, break-even $77.23/hr, recommended $90.86/hr → $34,758/yr left on the table at $65/hr |
 | 2026-08-31 | [Emergency Call-Out Fee Calculator](builds/2026-08-31) | 8 sample after-hours calls → $1,772 left on the table at daytime pricing, 158% avg after-hours premium |
 | 2026-08-28 | [Double-Booking Checker](builds/2026-08-28) | 16 jobs, 3 techs → 3 conflicts (6 jobs/38% touched), $920 (16%) revenue at risk |
 | 2026-08-27 | [Appointment Reminder Generator](builds/2026-08-27) | 12 bookings → 11 (92%) had a reminder due now, $4,655 job value covered |

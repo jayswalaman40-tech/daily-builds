@@ -1,0 +1,10 @@
+True Hourly Rate Calculator - sample run (solo plumber/electrician profile)
+Monthly overhead: $2,400  (rent 600, vehicle 650, insurance 380, tools 300, software/marketing 270, admin 200)
+Annual overhead: $28,800
+Desired annual pay: $75,000
+Billable hours/week: 28  x  Weeks worked/year: 48  =  1,344 billable hours/year
+Total to recover (overhead + pay): $103,800
+Break-even rate: $77.23/hr
+Target margin: 15%  ->  Recommended rate: $90.86/hr
+Current rate charged: $65.00/hr
+Gap: $25.86/hr short  ->  $34,758/year left on the table
