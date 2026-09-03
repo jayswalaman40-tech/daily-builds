@@ -1,0 +1,15 @@
+Quotes sent this month:        24
+Total quoted value:            $43,287
+Won so far:                    6 ($9,382) -> 25.0% close rate
+Lost:                          12
+Still open:                    6
+
+Close rate by follow-up count:
+  0-1 follow-ups   n= 8  won= 2  close rate=25.0%
+  2-3 follow-ups   n= 8  won= 3  close rate=37.5%
+  4+ follow-ups    n= 2  won= 1  close rate=50.0%
+
+Neglected open quotes (>3 days old, <2 follow-ups): 2
+Value sitting neglected:        $3,588
+Close rate this shop hits with 4+ follow-ups: 50.0%
+If applied to the neglected pile -> recoverable: $1,794
