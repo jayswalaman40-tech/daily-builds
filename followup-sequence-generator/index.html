@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quote Follow-Up Sequence Generator — free tool by AnswerCatch</title>
+<meta name="description" content="Most quotes die from silence, not price. Generate a ready-to-send Day 1 / Day 3 / Day 7 follow-up sequence (text + email) for any unsold estimate. Free, no signup." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  input[type=text]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input:focus{outline:none;border-color:var(--blue)}
+  .day{margin-bottom:20px}
+  .day-h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .day-h .pill{background:var(--grad-btn);color:#fff;font-weight:800;font-size:.82rem;padding:5px 13px;border-radius:20px}
+  .day-h .sub{color:var(--muted);font-size:.92rem;font-weight:600}
+  .msg{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 16px 14px;margin-bottom:12px}
+  .msg .txt{color:var(--ink);font-size:.98rem;white-space:pre-wrap;font-weight:500}
+  .msg .bar{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
+  .msg .tone{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .copy{border:1.5px solid var(--blue);background:#fff;color:var(--blue);font-family:var(--font);font-weight:700;font-size:.86rem;padding:7px 15px;border-radius:10px;cursor:pointer;transition:.15s}
+  .copy:hover{background:var(--blue);color:#fff}.copy.done{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .sec{margin:40px 0}.sec .eyebrow{display:block}.sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}.step p{color:var(--muted);font-size:.95rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Follow-Up Sequence</span>
+    <h1>Stop losing quotes to silence</h1>
+    <p class="lede">Most estimates aren't lost on price — they're lost because nobody followed up. Fill in the details and get a ready-to-send Day 1, Day 3 and Day 7 sequence, in both text and email, that politely brings the "yes" back.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field"><label>Your business name</label><input type="text" id="biz" placeholder="Rapid Plumbing" /></div>
+        <div class="field"><label>Your / rep's name</label><input type="text" id="tech" placeholder="Mike" /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Customer's first name <span style="color:var(--muted);font-weight:500">(optional)</span></label><input type="text" id="cust" placeholder="Sarah" /></div>
+        <div class="field"><label>The job / work quoted <span style="color:var(--muted);font-weight:500">(optional)</span></label><input type="text" id="job" placeholder="water heater replacement" /></div>
+      </div>
+    </div>
+
+    <div id="output"></div>
+
+    <div class="cta">
+      <h2>Never let a hot lead go cold</h2>
+      <p>AnswerCatch follows up instantly on every call and captures the ones you'd miss — so fewer quotes ever need a Day 7 nudge.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Your whole follow-up, done for you</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Enter the details</h4><p>Your business, the customer, and the job you quoted. The whole sequence personalizes automatically.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Send Day 1, 3 and 7</h4><p>A friendly check-in, a helpful nudge, then a final "closing the file" message — the one that gets the most replies.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Copy text or email</h4><p>Each step has a short text and a longer email. Copy whichever fits and send.</p></div></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Free to use. Templates are starting points — personalize before sending.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    function v(id){return document.getElementById(id).value.trim();}
+    function build(){
+      var biz=v("biz")||"[your business]";
+      var tech=v("tech")||"[your name]";
+      var name=v("cust");
+      var hi=name?("Hi "+name+","):"Hi there,";
+      var job=v("job");
+      var jobp=job?(" for the "+job):"";
+      var jobc=job?(" about the "+job):"";
+      return [
+        {day:"Day 1", sub:"Friendly check-in (a few hours after the quote)",
+         msgs:[
+          {tone:"Text", t:hi+" thanks for having us out today! Just sent over your estimate"+jobp+". Any questions at all, text me right here — happy to walk through it. — "+tech+", "+biz},
+          {tone:"Email", t:"Subject: Your estimate from "+biz+"\n\n"+hi+"\n\nThank you for the opportunity to quote your project today. Your estimate"+jobp+" is attached/above.\n\nI'm happy to answer any questions or adjust anything. Just reply here or give me a call.\n\nBest,\n"+tech+"\n"+biz}
+         ]},
+        {day:"Day 3", sub:"Helpful nudge (add value, no pressure)",
+         msgs:[
+          {tone:"Text", t:hi+" just checking in"+jobc+". Wanted to make sure the estimate made sense and see if there's anything I can clarify. We've got some availability this week if you'd like to lock in a time. — "+tech},
+          {tone:"Email", t:"Subject: Quick follow-up on your estimate\n\n"+hi+"\n\nJust wanted to follow up on the estimate I sent over. A lot of customers have questions about timing, warranty or payment options — happy to walk through any of it.\n\nWe currently have openings this week if you'd like to get on the schedule. Just let me know.\n\nBest,\n"+tech+"\n"+biz}
+         ]},
+        {day:"Day 7", sub:"Closing the file (the message that gets replies)",
+         msgs:[
+          {tone:"Text", t:hi+" I don't want to keep bugging you — just closing out my open estimates for the week. Are you still considering the work? A quick yes/no/not yet is all I need. Either way, thanks! — "+tech+", "+biz},
+          {tone:"Email", t:"Subject: Should I keep your estimate open?\n\n"+hi+"\n\nI'm tidying up my open quotes and didn't want yours to slip through the cracks. Are you still thinking about moving forward"+jobc+"?\n\nNo pressure at all — a quick reply of \"yes\", \"not yet\", or \"no thanks\" helps me plan the schedule. And if the timing or the price is the issue, tell me — we can usually find a way to make it work.\n\nThanks either way,\n"+tech+"\n"+biz}
+         ]}
+      ];
+    }
+    function render(){
+      var seq=build(); var idx=0;
+      document.getElementById("output").innerHTML=seq.map(function(d){
+        return '<div class="day"><div class="day-h"><span class="pill">'+d.day+'</span><span class="sub">'+d.sub+'</span></div>'+
+          d.msgs.map(function(m){var id="m"+(idx++);return '<div class="msg"><div class="txt" id="'+id+'">'+m.t.replace(/</g,"&lt;")+'</div><div class="bar"><span class="tone">'+m.tone+'</span><button class="copy" data-t="'+id+'">Copy</button></div></div>';}).join("")+
+        '</div>';
+      }).join("");
+      document.querySelectorAll(".copy").forEach(function(b){b.addEventListener("click",function(){var t=document.getElementById(b.getAttribute("data-t")).textContent;navigator.clipboard.writeText(t).then(function(){b.textContent="Copied ✓";b.classList.add("done");setTimeout(function(){b.textContent="Copy";b.classList.remove("done");},1600);});});});
+    }
+    ["biz","tech","cust","job"].forEach(function(id){document.getElementById(id).addEventListener("input",render);});
+    render();
+  </script>
+</body>
+</html>

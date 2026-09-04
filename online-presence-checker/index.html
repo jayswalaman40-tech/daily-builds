@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Online Presence Checker — free tool by AnswerCatch</title>
+<meta name="description" content="Score your whole online presence — website, Google, reviews, social and booking — against what wins home-service jobs, and get a prioritized fix list. Free, no signup." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --warn:#f5a623; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  .score-card{position:sticky;top:88px;z-index:5}
+  .score-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .ring{--p:0;flex:none;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--rc,var(--blue)) calc(var(--p)*1%),var(--bg-alt) 0);transition:.3s}
+  .ring .in{width:88px;height:88px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
+  .ring .in b{font-size:1.9rem;font-weight:900;color:var(--ink);line-height:1}
+  .ring .in span{font-size:.72rem;color:var(--muted);font-weight:700}
+  .score-txt h3{font-size:1.35rem;margin-bottom:2px}.score-txt p{color:var(--muted);font-size:.95rem;margin:0}
+  .grade{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+  .grp{font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:18px 0 6px}
+  .clist{list-style:none}
+  .citem{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .citem:last-child{border-bottom:none}
+  .cbox{flex:none;width:26px;height:26px;border:2px solid var(--line);border-radius:8px;display:grid;place-items:center;margin-top:1px;transition:.15s;color:#fff;font-weight:900;font-size:.95rem}
+  .citem.on .cbox{background:var(--accent);border-color:var(--accent)}
+  .citem .ct{color:var(--ink);font-weight:600;font-size:1rem}.citem.on .ct{color:var(--muted);text-decoration:line-through}
+  .citem .cw{font-size:.78rem;color:var(--muted);font-weight:700;margin-left:auto;flex:none;padding-top:2px}
+  .fixes .fx{display:flex;gap:14px;padding:16px;border:1px solid var(--line);border-radius:var(--radius-sm);margin-bottom:12px;background:var(--bg-soft)}
+  .fixes .fx .pill{flex:none;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:20px;height:fit-content}
+  .fixes .fx h4{color:var(--ink);font-size:1rem;margin-bottom:3px}.fixes .fx p{color:var(--muted);font-size:.92rem;margin:0}
+  .allgood{text-align:center;padding:24px;color:var(--accent);font-weight:700}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .sec{margin:40px 0}.sec .eyebrow{display:block}.sec h2{font-size:1.5rem;margin-bottom:14px}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Presence Checker</span>
+    <h1>How easy are you to find and trust online?</h1>
+    <p class="lede">When someone needs a pro, they check Google, your reviews, your site and your socials in about 30 seconds — then pick. Tick what you've got covered and see where you're losing them, with fixes in priority order.</p>
+
+    <div class="card score-card">
+      <div class="score-top">
+        <div class="ring" id="ring"><div class="in"><b id="scoreN">0</b><span>/ 100</span></div></div>
+        <div class="score-txt">
+          <h3 id="scoreH">Let's check your presence</h3>
+          <p id="scoreP">Tick each item that's true for your business.</p>
+          <span class="grade" id="grade" style="display:none"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card"><ul class="clist" id="clist"></ul></div>
+
+    <div class="sec">
+      <span class="eyebrow">Your action plan</span>
+      <h2>Fix these next — biggest wins first</h2>
+      <div class="fixes" id="fixes"></div>
+    </div>
+
+    <div class="cta">
+      <h2>The whole point of being found is getting the call</h2>
+      <p>Being easy to find is worthless if the call goes unanswered. AnswerCatch answers 24/7, qualifies the caller and books the job — so your online presence actually pays off.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Directional self-assessment based on common local-marketing best practices.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var ITEMS=[
+      {g:"Google",w:12,t:"You have a claimed, verified Google Business Profile",fix:"This is the #1 source of local calls. Claim and verify it at business.google.com before anything else."},
+      {g:"Google",w:8,t:"20+ reviews with a 4.5★ or higher average",fix:"Ask every happy customer. Review count and rating drive both ranking and whether people call you."},
+      {g:"Google",w:6,t:"You reply to reviews and post monthly updates",fix:"Active profiles rank better and look trustworthy. Reply to every review and post monthly."},
+      {g:"Website",w:10,t:"You have a website that loads fast on mobile",fix:"Most searches are on phones. A fast, simple mobile site is the minimum to be taken seriously."},
+      {g:"Website",w:8,t:"Your phone number is tap-to-call on every page",fix:"Make the number a big, tappable link at the top of every page — don't make people hunt for it."},
+      {g:"Website",w:6,t:"Services and service area are clearly listed",fix:"State exactly what you do and where, in plain words. It helps both customers and search engines."},
+      {g:"Booking",w:8,t:"People can request a quote or book online 24/7",fix:"Add a simple quote/booking form or button so after-hours visitors can act instead of leaving."},
+      {g:"Booking",w:8,t:"Someone answers calls after hours & weekends",fix:"Most emergency and high-intent calls come outside 9-5. If those go to voicemail, you lose them."},
+      {g:"Trust",w:6,t:"Consistent name, address & phone everywhere",fix:"Make your NAP identical across Google, site, Facebook and directories — inconsistency erodes trust and ranking."},
+      {g:"Trust",w:6,t:"Real photos of your team, trucks and jobs",fix:"Genuine photos beat stock every time. They make you look established and get more clicks."},
+      {g:"Social",w:6,t:"An active social page (posted in last 30 days)",fix:"You don't need to be everywhere — one page with recent job posts signals you're active and real."},
+      {g:"Social",w:4,t:"Listed on Facebook, Nextdoor or a trade directory",fix:"Extra listings mean more ways to be found and more consistent info about your business online."},
+      {g:"Trust",w:4,t:"Licenses / insurance / guarantees are visible",fix:"Show badges, license numbers and any guarantee. It removes the biggest hesitation to calling a stranger."},
+      {g:"Website",w:2,t:"You can be texted, not just called",fix:"Many people prefer to text. Offering it captures the ones who'll never leave a voicemail."}
+    ];
+    var state=ITEMS.map(function(){return false;});
+    function draw(){
+      var html="", lastG="";
+      ITEMS.forEach(function(it,i){
+        if(it.g!==lastG){ html+='<div class="grp">'+it.g+'</div>'; lastG=it.g; }
+        html+='<div class="citem'+(state[i]?" on":"")+'" data-i="'+i+'"><span class="cbox">'+(state[i]?"✓":"")+'</span><span class="ct">'+it.t+'</span><span class="cw">'+it.w+'</span></div>';
+      });
+      document.getElementById("clist").innerHTML='<div style="margin-top:-6px">'+html+'</div>';
+      document.querySelectorAll(".citem").forEach(function(li){li.addEventListener("click",function(){var i=+li.getAttribute("data-i");state[i]=!state[i];draw();});});
+      var score=0; ITEMS.forEach(function(it,i){if(state[i])score+=it.w;});
+      var ring=document.getElementById("ring"); ring.style.setProperty("--p",score);
+      var rc=score>=80?"var(--accent)":score>=50?"var(--warn)":"var(--loss)"; ring.style.setProperty("--rc",rc);
+      document.getElementById("scoreN").textContent=score;
+      var h=document.getElementById("scoreH"),p=document.getElementById("scoreP"),g=document.getElementById("grade");
+      g.style.display="inline-block";
+      if(score>=80){h.textContent="Strong online presence 💪";p.textContent="You're easy to find and easy to trust. Polish the last few items.";g.textContent="Strong";g.style.background="rgba(16,217,176,.14)";g.style.color="var(--accent)";}
+      else if(score>=50){h.textContent="Decent — with gaps costing you calls";p.textContent="A few high-impact fixes below would noticeably help.";g.textContent="Needs work";g.style.background="rgba(245,166,35,.15)";g.style.color="var(--warn)";}
+      else if(score>0){h.textContent="Hard to find or hard to trust";p.textContent="Customers are likely picking competitors who are easier to reach. Start with the fixes below.";g.textContent="At risk";g.style.background="rgba(229,72,77,.13)";g.style.color="var(--loss)";}
+      else{h.textContent="Let's check your presence";p.textContent="Tick each item that's true for your business.";g.style.display="none";}
+      var open=ITEMS.map(function(it,i){return {it:it,i:i};}).filter(function(o){return !state[o.i];}).sort(function(a,b){return b.it.w-a.it.w;});
+      var fx=document.getElementById("fixes");
+      if(!open.length){fx.innerHTML='<div class="allgood">✓ Everything checked — you\'re fully covered. Keep reviews and photos fresh.</div>';return;}
+      fx.innerHTML=open.slice(0,6).map(function(o){
+        var lvl=o.it.w>=8?{t:"High impact",bg:"rgba(229,72,77,.12)",c:"var(--loss)"}:o.it.w>=5?{t:"Medium",bg:"rgba(245,166,35,.15)",c:"var(--warn)"}:{t:"Quick win",bg:"rgba(47,107,255,.1)",c:"var(--blue)"};
+        return '<div class="fx"><span class="pill" style="background:'+lvl.bg+';color:'+lvl.c+'">'+lvl.t+'</span><div><h4>'+o.it.t+'</h4><p>'+o.it.fix+'</p></div></div>';
+      }).join("")+(open.length>6?'<p style="color:var(--muted);font-size:.9rem;text-align:center">+ '+(open.length-6)+' more once these are done.</p>':"");
+    }
+    draw();
+  </script>
+</body>
+</html>
