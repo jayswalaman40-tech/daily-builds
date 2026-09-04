@@ -292,9 +292,8 @@
     }
     function fmtName(k){var m={calculator:"Calculator",generator:"Generator",scorecard:"Scorecard",utility:"Utility"};return m[k];}
     function card(t){
-      var newTag=t.new?'<span class="tag isnew">New</span>':'';
       return '<a class="tool-card" href="'+t.s+'/">'+
-        '<div class="tags">'+newTag+'<span class="tag fmt-'+t.f+'">'+fmtName(t.f)+'</span></div>'+
+        '<div class="tags"><span class="tag fmt-'+t.f+'">'+fmtName(t.f)+'</span></div>'+
         '<h3>'+t.n+'</h3><p>'+t.d+'</p><span class="go">Open tool →</span></a>';
     }
     function match(t){
