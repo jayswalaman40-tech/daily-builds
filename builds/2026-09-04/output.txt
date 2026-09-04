@@ -1,0 +1,13 @@
+=== Callback & Rework Cost Calculator — sample run ===
+Jobs completed this month: 130
+Callbacks/rework trips: 11
+Callback rate: 8.5%  (RED FLAG (above 3%))
+Average cost per callback (this shop): $449
+Monthly cost of callbacks: $4,938
+Annualized cost of callbacks: $59,256
+
+Industry benchmark callback rate: 2%
+Callbacks/month at benchmark rate: 2.6
+Monthly cost at benchmark rate: $1,167
+Monthly $ recoverable by hitting benchmark: $3,771
+Annual $ recoverable by hitting benchmark: $45,250

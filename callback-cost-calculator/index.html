@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Callback &amp; Rework Cost Calculator — free tool by AnswerCatch</title>
+<meta name="description" content="See how much unbilled callbacks and rework trips cost your home-service business, and what you'd save at the industry-benchmark callback rate. Free, no-signup calculator." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  /* page */
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=number]:focus{outline:none;border-color:var(--blue)}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#fff6f6);border:1px solid #f6d9da;border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat .n{font-size:1.9rem;font-weight:900;color:var(--loss);letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .stat.good{background:linear-gradient(180deg,#fff,#f2fdfa);border-color:#c9f1e7}
+  .stat.good .n{color:var(--accent)}
+  .flag{margin-top:16px;padding:14px 18px;border-radius:var(--radius-sm);font-weight:700;font-size:.95rem;text-align:center}
+  .flag.red{background:#fdeced;color:#b8232a;border:1px solid #f6c8ca}
+  .flag.amber{background:#fff6e8;color:#a8620a;border:1px solid #f5e0b8}
+  .flag.green{background:rgba(16,217,176,.1);color:#0b8c72;border:1px solid #b9ecdf}
+  /* cta */
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  /* how-to + benefits */
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Rework Calculator</span>
+    <h1>What are callbacks really costing you?</h1>
+    <p class="lede">Every callback is a truck roll, a tech's billable hour, and free parts — for work you already got paid for once. See the real monthly and yearly cost, and how you compare to the industry benchmark.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Jobs completed per month: <span class="val" id="jobsV">130</span></label>
+          <input type="range" id="jobs" min="10" max="400" value="130" />
+        </div>
+        <div class="field">
+          <label>Callbacks / rework trips per month: <span class="val" id="cbV">11</span></label>
+          <input type="range" id="cb" min="0" max="60" value="11" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Average cost per callback ($)</label>
+          <input type="number" id="cost" value="449" min="0" step="10" />
+          <label style="font-weight:400;color:var(--muted);font-size:.82rem;margin-top:6px">Truck roll + tech time + parts redo. Typical range: $300-$650.</label>
+        </div>
+        <div class="field">
+          <label>Benchmark callback rate: <span class="val" id="benchV">2</span>%</label>
+          <input type="range" id="bench" min="1" max="5" value="2" />
+        </div>
+      </div>
+
+      <div id="flag" class="flag red">Your callback rate is 8.5% — a RED FLAG (industry threshold is 3%)</div>
+
+      <div class="out">
+        <div class="stat"><div class="n" id="rate">0%</div><div class="l">current callback rate</div></div>
+        <div class="stat"><div class="n" id="perMonth">$0</div><div class="l">callbacks cost / month</div></div>
+        <div class="stat"><div class="n" id="perYear">$0</div><div class="l">callbacks cost / year</div></div>
+      </div>
+      <div class="out" style="margin-top:14px">
+        <div class="stat good" style="grid-column:1/-1"><div class="n" id="savings">$0</div><div class="l">recoverable per year by hitting the benchmark rate</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Get your number in 30 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Enter your numbers</h4><p>Jobs completed this month, how many come back as callbacks or rework, and your average cost per callback (truck roll, labor, redone parts).</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>See the leak</h4><p>Instantly see your callback rate against the industry benchmark, and what that gap is costing you monthly and yearly.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Fix the process</h4><p>Callbacks are rework, not warranty — better diagnosis, complete truck stock, and thorough closeout notes close most of the gap.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Callbacks quietly eat your margin</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">🚨</div><h4>2-3% is the benchmark</h4><p>Best-in-class shops run callback rates under 1.5-2%. Many home-service businesses run 5-10% without realizing it.</p></div>
+        <div class="benefit"><div class="ic">💸</div><h4>Every callback is unpaid work</h4><p>A callback trip typically costs $300-$650 once you count windshield time, tech labor, and redone parts — and you don't get to rebill for it.</p></div>
+        <div class="benefit"><div class="ic">📉</div><h4>It hides in the schedule</h4><p>A callback also bumps a billable job off today's schedule — the real cost is the callback cost plus the job you didn't get to run.</p></div>
+        <div class="benefit"><div class="ic">✅</div><h4>It's a process fix, not luck</h4><p>Tracking callback rate by tech and by job type is usually enough to find the pattern and cut the rate in half.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Stop losing jobs to slow follow-up too</h2>
+      <p>AnswerCatch is an AI receptionist that answers every call, books the job, and follows up automatically — 24/7.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Estimates only, based on your inputs. Benchmark rates from industry callback-rate research.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+    function calc(){
+      var jobs = +document.getElementById("jobs").value;
+      var cb = +document.getElementById("cb").value;
+      var cost = +document.getElementById("cost").value || 0;
+      var bench = +document.getElementById("bench").value;
+      document.getElementById("jobsV").textContent = jobs;
+      document.getElementById("cbV").textContent = cb;
+      document.getElementById("benchV").textContent = bench;
+
+      var rate = jobs > 0 ? (cb / jobs) * 100 : 0;
+      var monthlyCost = cb * cost;
+      var yearlyCost = monthlyCost * 12;
+
+      var benchCallbacks = jobs * (bench / 100);
+      var benchMonthlyCost = benchCallbacks * cost;
+      var monthlySavings = Math.max(0, monthlyCost - benchMonthlyCost);
+      var yearlySavings = monthlySavings * 12;
+
+      document.getElementById("rate").textContent = rate.toFixed(1) + "%";
+      document.getElementById("perMonth").textContent = money(monthlyCost);
+      document.getElementById("perYear").textContent = money(yearlyCost);
+      document.getElementById("savings").textContent = money(yearlySavings);
+
+      var flagEl = document.getElementById("flag");
+      if (rate > 3) {
+        flagEl.className = "flag red";
+        flagEl.textContent = "Your callback rate is " + rate.toFixed(1) + "% — a RED FLAG (industry threshold is 3%)";
+      } else if (rate > bench) {
+        flagEl.className = "flag amber";
+        flagEl.textContent = "Your callback rate is " + rate.toFixed(1) + "% — above the " + bench + "% benchmark, room to improve";
+      } else {
+        flagEl.className = "flag green";
+        flagEl.textContent = "Your callback rate is " + rate.toFixed(1) + "% — at or below benchmark. Nice work.";
+      }
+    }
+    ["jobs","cb","cost","bench"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", calc);
+    });
+    calc();
+  </script>
+</body>
+</html>
