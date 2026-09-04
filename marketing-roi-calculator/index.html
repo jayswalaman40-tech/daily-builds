@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Marketing ROI Calculator — free tool by AnswerCatch</title>
+<meta name="description" content="See if your advertising actually makes money. Enter your ad spend and leads to get cost per lead, cost per booked job, ROAS and profit. Free, no-signup calculator." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=number]:focus{outline:none;border-color:var(--blue)}
+  .hero-out{border-radius:var(--radius-sm);padding:24px;text-align:center;margin-bottom:14px;border:1px solid #d5e2fb;background:linear-gradient(180deg,#f3f7ff,#eaf1ff)}
+  .hero-out.win{border-color:#c9f0e5;background:linear-gradient(180deg,#f2fffb,#e6fbf4)}
+  .hero-out.lose{border-color:#f6d9da;background:linear-gradient(180deg,#fff6f6,#ffeaea)}
+  .hero-out .big{font-size:3rem;font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--blue)}
+  .hero-out.win .big{color:var(--accent)}
+  .hero-out.lose .big{color:var(--loss)}
+  .hero-out .cap{color:var(--body);font-size:.98rem;margin-top:6px;font-weight:600}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat .n{font-size:1.5rem;font-weight:900;color:var(--ink);letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Marketing ROI Calculator</span>
+    <h1>Is your advertising actually making money?</h1>
+    <p class="lede">Most contractors know what they spend on ads — but not what they get back. Enter your numbers to see your cost per lead, cost per booked job, return on ad spend, and real profit.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Monthly ad spend ($)</label>
+          <input type="number" id="spend" value="2000" min="0" step="50" />
+        </div>
+        <div class="field">
+          <label>Leads generated / month</label>
+          <input type="number" id="leads" value="40" min="0" step="1" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Booking rate: <span class="val" id="bookV">35</span>%</label>
+          <input type="range" id="book" min="1" max="100" value="35" />
+        </div>
+        <div class="field">
+          <label>Average job value ($)</label>
+          <input type="number" id="job" value="450" min="0" step="10" />
+        </div>
+      </div>
+
+      <div class="hero-out" id="hero">
+        <div class="big" id="roas">0x</div>
+        <div class="cap" id="verdict">Enter your numbers to see your return.</div>
+      </div>
+      <div class="out">
+        <div class="stat"><div class="n" id="cpl">$0</div><div class="l">cost per lead</div></div>
+        <div class="stat"><div class="n" id="cpj">$0</div><div class="l">cost per booked job</div></div>
+        <div class="stat"><div class="n" id="profit">$0</div><div class="l">profit from ads</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Know your real numbers in 30 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Enter spend &amp; leads</h4><p>Put in what you spend on ads each month and how many leads it brings in. Add your booking rate and average job value.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>See what it's really costing</h4><p>You get cost per lead, cost per booked job, return on ad spend (ROAS), and the profit those ads actually produced.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Fix the leak</h4><p>If ROAS is low, the problem is usually leads that never got answered or followed up — not the ad itself.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>You can't fix what you don't measure</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">🎯</div><h4>Know your true cost per job</h4><p>Spend divided by booked jobs is the number that actually matters — not clicks or impressions.</p></div>
+        <div class="benefit"><div class="ic">📈</div><h4>Spot winning channels</h4><p>Run it per channel and you'll see which ads to scale and which to cut before you waste another month.</p></div>
+        <div class="benefit"><div class="ic">📞</div><h4>The leak is usually the phone</h4><p>Most wasted ad spend is a lead that called, got voicemail, and hired someone else. Booking rate is where money leaks.</p></div>
+        <div class="benefit"><div class="ic">💰</div><h4>Turn spend into profit</h4><p>A small lift in booking rate often beats spending more — because you already paid for those leads.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Stop paying for leads you never answer</h2>
+      <p>AnswerCatch answers every ad call 24/7, qualifies the caller, and books the job — so the leads you already paid for actually turn into revenue.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Estimates only, based on your inputs. ROAS = revenue ÷ ad spend; "profit from ads" is revenue minus ad spend (before job costs).<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+    function calc(){
+      var spend = +document.getElementById("spend").value || 0;
+      var leads = +document.getElementById("leads").value || 0;
+      var book = +document.getElementById("book").value || 0;
+      var job = +document.getElementById("job").value || 0;
+      document.getElementById("bookV").textContent = book;
+      var jobs = leads * (book/100);
+      var revenue = jobs * job;
+      var roas = spend > 0 ? revenue / spend : 0;
+      var cpl = leads > 0 ? spend / leads : 0;
+      var cpj = jobs > 0 ? spend / jobs : 0;
+      var profit = revenue - spend;
+      document.getElementById("roas").textContent = roas.toFixed(1) + "x";
+      document.getElementById("cpl").textContent = money(cpl);
+      document.getElementById("cpj").textContent = jobs > 0 ? money(cpj) : "—";
+      document.getElementById("profit").textContent = money(profit);
+      var hero = document.getElementById("hero");
+      var verdict = document.getElementById("verdict");
+      hero.classList.remove("win","lose");
+      if(spend === 0 || leads === 0){
+        verdict.textContent = "Enter your numbers to see your return.";
+      } else if(roas >= 3){
+        hero.classList.add("win");
+        verdict.textContent = "Every $1 in ads returns " + money(roas) + " in revenue. Healthy — consider scaling.";
+      } else if(roas >= 1){
+        verdict.textContent = "Every $1 returns " + money(roas) + ". It works, but a higher booking rate would make it far more profitable.";
+      } else {
+        hero.classList.add("lose");
+        verdict.textContent = "Every $1 in ads returns only " + money(roas) + ". You're losing money — the leak is usually unanswered leads.";
+      }
+    }
+    ["spend","leads","book","job"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", calc);
+    });
+    calc();
+  </script>
+</body>
+</html>
