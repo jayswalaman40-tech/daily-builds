@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lead List Cleaner — free tool by AnswerCatch</title>
+<meta name="description" content="Paste a messy list of names and phone numbers and get a clean, de-duplicated, properly formatted contact list you can copy or download. Free, no signup." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --warn:#f5a623; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  textarea{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:14px;font-size:.98rem;font-family:'Inter',monospace;font-weight:500;resize:vertical;min-height:150px;line-height:1.5}
+  textarea:focus{outline:none;border-color:var(--blue)}
+  .opts{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+  .chk{display:flex;align-items:center;gap:9px;font-weight:600;color:var(--body);cursor:pointer;font-size:.95rem}
+  .chk input{width:18px;height:18px;accent-color:var(--blue)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px;text-align:center;box-shadow:var(--shadow-sm)}
+  .stat .n{font-size:1.5rem;font-weight:900;color:var(--ink)}
+  .stat.good .n{color:var(--accent)}.stat.warn .n{color:var(--warn)}.stat.bad .n{color:var(--loss)}
+  .stat .l{color:var(--muted);font-size:.78rem;font-weight:600;margin-top:2px}
+  .outbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .btn-out{background:#fff;color:var(--blue);border-color:var(--blue);font-size:.92rem;padding:9px 16px}
+  .btn-out:hover{background:var(--bg-alt)}.btn-out.done{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28);margin-top:22px}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .sec{margin:40px 0}.sec .eyebrow{display:block}.sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}.step p{color:var(--muted);font-size:.95rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Lead List Cleaner</span>
+    <h1>Clean up a messy contact list in one click</h1>
+    <p class="lede">Paste a list of names and phone numbers — however messy — and get back a tidy, de-duplicated list with every US number formatted the same way. Perfect before a call-back session or importing to your CRM.</p>
+
+    <div class="card">
+      <label>Paste your list (one contact per line)</label>
+      <textarea id="input" placeholder="Sarah Johnson 5551234567&#10;mike - (555) 987.6543&#10;Sarah Johnson 555-123-4567&#10;John Doe  1 555 456 7890"></textarea>
+      <div class="opts">
+        <label class="chk"><input type="checkbox" id="dedupe" checked> Remove duplicates</label>
+        <label class="chk"><input type="checkbox" id="fmt" checked> Format phone numbers</label>
+        <label class="chk"><input type="checkbox" id="sortName"> Sort by name</label>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" id="sTotal">0</div><div class="l">lines in</div></div>
+      <div class="stat good"><div class="n" id="sClean">0</div><div class="l">clean contacts</div></div>
+      <div class="stat warn"><div class="n" id="sDupe">0</div><div class="l">duplicates removed</div></div>
+      <div class="stat bad"><div class="n" id="sBad">0</div><div class="l">no valid phone</div></div>
+    </div>
+
+    <div class="card">
+      <div class="outbar">
+        <button class="btn btn-out" id="copy">Copy list</button>
+        <button class="btn btn-out" id="dl">Download .csv</button>
+      </div>
+      <textarea id="output" readonly placeholder="Your cleaned list appears here…"></textarea>
+    </div>
+
+    <div class="cta">
+      <h2>A clean list is good. Never needing a call-back list is better.</h2>
+      <p>AnswerCatch answers and books leads the moment they call — so fewer of them end up on a "call these people back later" list in the first place.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Messy list to clean CSV in seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Paste anything</h4><p>Copy names and numbers from anywhere — a notepad, texts, a spreadsheet column. Formatting doesn't matter.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Pick your options</h4><p>Remove duplicates, format every number as (555) 123-4567, and optionally sort by name.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Copy or download</h4><p>Grab the clean list as text or a CSV ready to import into your CRM or dialer.</p></div></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Runs entirely in your browser — your list is never uploaded or stored. US/Canada 10-digit numbers.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var cleaned = [];
+    function fmtPhone(d){
+      if(d.length===11 && d[0]==="1") d=d.slice(1);
+      if(d.length!==10) return null;
+      return "("+d.slice(0,3)+") "+d.slice(3,6)+"-"+d.slice(6);
+    }
+    function process(){
+      var raw=document.getElementById("input").value;
+      var doFmt=document.getElementById("fmt").checked;
+      var doDedupe=document.getElementById("dedupe").checked;
+      var doSort=document.getElementById("sortName").checked;
+      var lines=raw.split("\n").map(function(l){return l.trim();}).filter(function(l){return l.length;});
+      var total=lines.length, bad=0, seen={}, dupes=0, rows=[];
+      lines.forEach(function(l){
+        var digits=(l.match(/\d/g)||[]).join("");
+        var name=l.replace(/[\d().+\-]/g,"").replace(/\s+/g," ").trim();
+        var phone=fmtPhone(digits);
+        if(!phone){ bad++; return; }
+        var key=digits.length===11&&digits[0]==="1"?digits.slice(1):digits;
+        if(doDedupe && seen[key]){ dupes++; return; }
+        seen[key]=true;
+        rows.push({name:name||"", phone: doFmt?phone:digits});
+      });
+      if(doSort) rows.sort(function(a,b){return a.name.localeCompare(b.name);});
+      cleaned=rows;
+      document.getElementById("sTotal").textContent=total;
+      document.getElementById("sClean").textContent=rows.length;
+      document.getElementById("sDupe").textContent=dupes;
+      document.getElementById("sBad").textContent=bad;
+      document.getElementById("output").value=rows.map(function(r){
+        return (r.name? r.name+", ":"")+r.phone;
+      }).join("\n");
+    }
+    document.getElementById("copy").addEventListener("click", function(){
+      var b=this; navigator.clipboard.writeText(document.getElementById("output").value).then(function(){
+        b.textContent="Copied ✓"; b.classList.add("done");
+        setTimeout(function(){b.textContent="Copy list";b.classList.remove("done");},1600);
+      });
+    });
+    document.getElementById("dl").addEventListener("click", function(){
+      var csv="Name,Phone\n"+cleaned.map(function(r){
+        return '"'+r.name.replace(/"/g,'""')+'","'+r.phone+'"';
+      }).join("\n");
+      var blob=new Blob([csv],{type:"text/csv"});
+      var a=document.createElement("a");
+      a.href=URL.createObjectURL(blob); a.download="clean-leads.csv";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+    ["input","dedupe","fmt","sortName"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", process);
+      document.getElementById(id).addEventListener("change", process);
+    });
+    process();
+  </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Are You Losing Jobs to Missed Calls? Quiz — free tool by AnswerCatch</title>
+<meta name="description" content="Answer 6 quick questions and get your missed-call risk score — plus exactly where you're losing jobs and how to plug the leak. Free, no signup." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --warn:#f5a623; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:720px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .q{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+  .q .qh{font-weight:800;color:var(--ink);font-size:1.08rem;margin-bottom:14px}
+  .q .qh .n{color:var(--blue)}
+  .opts{display:grid;gap:10px}
+  .opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:12px;padding:12px 15px;cursor:pointer;transition:.14s;font-weight:600;color:var(--body)}
+  .opt:hover{border-color:var(--blue)}
+  .opt.sel{border-color:var(--blue);background:var(--bg-alt);color:var(--ink)}
+  .opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);transition:.14s}
+  .opt.sel .dot{border-color:var(--blue);background:var(--blue);box-shadow:inset 0 0 0 3px #fff}
+  .result{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);margin-top:8px;display:none}
+  .result.show{display:block}
+  .meter{height:14px;border-radius:10px;background:var(--bg-alt);overflow:hidden;margin:14px 0}
+  .meter i{display:block;height:100%;border-radius:10px;transition:.4s width}
+  .rtag{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:6px}
+  .result h3{font-size:1.5rem;margin-bottom:6px}
+  .result p{margin-bottom:10px}
+  .leaks{list-style:none;margin-top:10px}
+  .leaks li{padding:8px 0 8px 26px;position:relative;color:var(--body)}
+  .leaks li:before{content:"⚠";position:absolute;left:0;color:var(--warn)}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28);margin-top:22px}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Missed-Call Quiz</span>
+    <h1>Are you losing jobs to missed calls?</h1>
+    <p class="lede">Six quick questions. At the end you'll get your missed-call risk score, the specific leaks in your phone setup, and what to do about them.</p>
+
+    <div id="quiz"></div>
+
+    <div class="result" id="result">
+      <span class="rtag" id="rtag"></span>
+      <h3 id="rtitle"></h3>
+      <div class="meter"><i id="rbar"></i></div>
+      <p id="rdesc"></p>
+      <ul class="leaks" id="rleaks"></ul>
+    </div>
+
+    <div class="cta">
+      <h2>Plug every leak with one fix</h2>
+      <p>AnswerCatch answers every call 24/7 — after hours, weekends, while you're on a job — qualifies the caller, texts them back, and books the work. No missed call, no lost job.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      A directional self-assessment, not a guarantee. Your real numbers depend on your call volume and close rate.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var QUESTIONS = [
+      {q:"When you're on a job and the phone rings, what usually happens?",
+       o:[["Someone in the office answers it",0],["An answering service picks up",0],["It goes to voicemail",3],["It just rings out",3]],
+       leak:"Calls during jobs go unanswered — often your busiest, highest-intent callers."},
+      {q:"What happens to calls after hours and on weekends?",
+       o:[["A service or app answers",0],["Forwarded to my cell",1],["Straight to voicemail",3],["Nothing — they can't reach us",3]],
+       leak:"After-hours calls are the biggest leak — emergencies that go to whoever answers first."},
+      {q:"How fast do you usually call a new lead back?",
+       o:[["Within 5 minutes",0],["Within an hour",1],["Same day, a few hours later",2],["Next day or whenever I can",3]],
+       leak:"Slow callbacks lose the lead — most people hire the first business that answers."},
+      {q:"On a busy day, how many calls go unanswered?",
+       o:[["Zero or one",0],["Two or three",2],["Four or more",3],["Honestly no idea",2]],
+       leak:"Several unanswered calls a day quietly add up to real lost revenue every month."},
+      {q:"If you miss a call, do you text the caller back?",
+       o:[["Always, right away",0],["Sometimes",1],["Rarely",2],["Never",3]],
+       leak:"No text-back means a missed call is simply a lost caller — they've already dialed the next name."},
+      {q:"Do you know how many jobs you lost last month to missed calls?",
+       o:[["Yes, I track it",0],["Roughly",1],["No idea",2]],
+       leak:"If it isn't measured, the leak stays invisible — and keeps costing you."}
+    ];
+    var answers = {};
+    function render(){
+      document.getElementById("quiz").innerHTML = QUESTIONS.map(function(Q,qi){
+        return '<div class="q"><div class="qh"><span class="n">Q'+(qi+1)+'.</span> '+Q.q+'</div><div class="opts">'+
+          Q.o.map(function(o,oi){
+            var sel = answers[qi]===oi ? " sel":"";
+            return '<div class="opt'+sel+'" data-q="'+qi+'" data-o="'+oi+'"><span class="dot"></span>'+o[0]+'</div>';
+          }).join("")+'</div></div>';
+      }).join("");
+      document.querySelectorAll(".opt").forEach(function(el){
+        el.addEventListener("click", function(){
+          answers[+el.getAttribute("data-q")] = +el.getAttribute("data-o");
+          render(); score();
+        });
+      });
+    }
+    function score(){
+      var answered = Object.keys(answers).length;
+      if(answered < QUESTIONS.length) return;
+      var pts=0, max=0, leaks=[];
+      QUESTIONS.forEach(function(Q,qi){
+        var maxo = Math.max.apply(null, Q.o.map(function(o){return o[1];}));
+        max += maxo;
+        var val = Q.o[answers[qi]][1];
+        pts += val;
+        if(val >= 2) leaks.push(Q.leak);
+      });
+      var pct = Math.round(pts/max*100);
+      var res=document.getElementById("result"); res.classList.add("show");
+      var bar=document.getElementById("rbar"); bar.style.width=pct+"%";
+      var tag=document.getElementById("rtag"), title=document.getElementById("rtitle"), desc=document.getElementById("rdesc");
+      var color, label, tl, ds;
+      if(pct>=60){ color="var(--loss)"; label="High risk"; tl="You're leaking jobs right now"; ds="Your phone setup is letting real, ready-to-book customers slip through — especially after hours and during jobs. This is the cheapest revenue you can recover."; }
+      else if(pct>=30){ color="var(--warn)"; label="Medium risk"; tl="A few real leaks to plug"; ds="You catch a lot of calls, but there are clear gaps costing you jobs. A couple of fixes below would tighten it up fast."; }
+      else { color="var(--accent)"; label="Low risk"; tl="Tight setup — nice work"; ds="You handle calls well. Keep an eye on the few items below so a busy week doesn't open a gap."; }
+      bar.style.background=color;
+      tag.textContent=label; tag.style.background="rgba(0,0,0,.05)"; tag.style.color=color;
+      title.textContent=tl+" ("+pct+"% risk)"; desc.textContent=ds;
+      document.getElementById("rleaks").innerHTML = leaks.length ? leaks.map(function(l){return "<li>"+l+"</li>";}).join("") : "<li style='color:var(--accent)'>No major leaks flagged — keep it up.</li>";
+      res.scrollIntoView({behavior:"smooth",block:"nearest"});
+    }
+    render();
+  </script>
+</body>
+</html>
