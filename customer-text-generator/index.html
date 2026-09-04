@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Customer Text Message Generator — free tool by AnswerCatch</title>
+<meta name="description" content="Generate ready-to-send customer text messages for home-service jobs — missed-call replies, on-my-way, job-done review asks and follow-ups. Free, no-signup, copy in one tap." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  input[type=text]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=text]:focus{outline:none;border-color:var(--blue)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+  .chip{border:1.5px solid var(--line);background:#fff;color:var(--body);font-family:var(--font);font-weight:700;font-size:.92rem;padding:9px 15px;border-radius:11px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--blue);color:var(--blue)}
+  .chip.active{background:var(--grad-btn);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(47,107,255,.3)}
+  .msg{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 18px 16px;margin-bottom:14px}
+  .msg .txt{color:var(--ink);font-size:1rem;white-space:pre-wrap;font-weight:500}
+  .msg .bar{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px}
+  .msg .tone{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .copy{border:1.5px solid var(--blue);background:#fff;color:var(--blue);font-family:var(--font);font-weight:700;font-size:.88rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+  .copy:hover{background:var(--blue);color:#fff}
+  .copy.done{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Text Generator</span>
+    <h1>Ready-to-send customer texts, in one tap</h1>
+    <p class="lede">The right text at the right moment wins jobs and reviews — but nobody has time to write them mid-job. Pick a moment, fill in a couple of blanks, and copy a message that's ready to send.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Your business name</label>
+          <input type="text" id="biz" value="" placeholder="e.g. Rapid Plumbing" />
+        </div>
+        <div class="field">
+          <label>Your / tech's name</label>
+          <input type="text" id="tech" value="" placeholder="e.g. Mike" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Customer's first name <span style="color:var(--muted);font-weight:500">(optional)</span></label>
+          <input type="text" id="cust" value="" placeholder="e.g. Sarah" />
+        </div>
+        <div class="field">
+          <label>Time / window <span style="color:var(--muted);font-weight:500">(optional)</span></label>
+          <input type="text" id="time" value="" placeholder="e.g. 2:30 PM" />
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:6px">
+        <label>Google review link <span style="color:var(--muted);font-weight:500">(optional — used in the review text)</span></label>
+        <input type="text" id="review" value="" placeholder="e.g. g.page/r/your-review-link" />
+      </div>
+    </div>
+
+    <div class="card">
+      <label style="margin-bottom:12px">Pick the moment</label>
+      <div class="chips" id="chips"></div>
+      <div id="output" style="margin-top:18px"></div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>From "I'll text them later" to sent in 10 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Fill in your details once</h4><p>Your business name and the tech's name. Add the customer's name and time if you have them — the messages fill in automatically.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Pick the moment</h4><p>Missed call, on my way, running late, job done, or a quote follow-up. Each gives you a friendly and a professional version.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Copy and send</h4><p>One tap copies the text. Paste it into your phone and hit send — no typing while you're standing in someone's driveway.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>A quick text is the cheapest way to win the job</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">📵</div><h4>Save the missed call</h4><p>A fast "sorry we missed you" text catches the caller before they dial the next contractor on the list.</p></div>
+        <div class="benefit"><div class="ic">🚚</div><h4>Fewer no-shows</h4><p>An "on my way" text cuts confusion and no-shows, and makes you look organized and professional.</p></div>
+        <div class="benefit"><div class="ic">⭐</div><h4>More 5-star reviews</h4><p>The best time to ask for a review is right after a great job. A ready text makes it effortless — and effortless gets done.</p></div>
+        <div class="benefit"><div class="ic">📈</div><h4>Follow-ups that close</h4><p>Most quotes die from silence, not price. A polite nudge a few days later brings a lot of "yes, let's book it" replies.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Can't text every caller yourself? Let AnswerCatch do it</h2>
+      <p>AnswerCatch answers every call 24/7, texts the caller back, qualifies them, and books the job — so no lead ever waits for a reply.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Free to use. Messages are generated in your browser — nothing is sent or stored.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var SCENARIOS = [
+      { key:"missed", label:"📵 Missed-call reply" },
+      { key:"onway",  label:"🚚 On my way" },
+      { key:"late",   label:"⏰ Running late" },
+      { key:"done",   label:"⭐ Job done + review" },
+      { key:"followup", label:"📈 Quote follow-up" }
+    ];
+    var active = "missed";
+
+    function v(id){ return document.getElementById(id).value.trim(); }
+    function build(){
+      var biz  = v("biz")  || "[your business]";
+      var tech = v("tech") || "[your name]";
+      var cust = v("cust");
+      var hi   = cust ? ("Hi " + cust + ",") : "Hi there,";
+      var time = v("time") || "shortly";
+      var rev  = v("review") || "[your Google review link]";
+
+      var M = {
+        missed: [
+          { tone:"Friendly", t: hi + " this is " + tech + " with " + biz + " — sorry we just missed your call! We'd love to help. What can we do for you? Happy to call back or set up a time that works." },
+          { tone:"Professional", t: hi + " " + tech + " here from " + biz + ". We missed your call but want to make sure you're taken care of. Reply here or let us know a good time to reach you and we'll get you scheduled." }
+        ],
+        onway: [
+          { tone:"Friendly", t: hi + " it's " + tech + " from " + biz + " — I'm on my way and should be there around " + time + ". See you soon!" },
+          { tone:"Professional", t: hi + " this is " + tech + " with " + biz + ". Your technician is en route with an estimated arrival of " + time + ". Please reply if anything has changed." }
+        ],
+        late: [
+          { tone:"Friendly", t: hi + " " + tech + " here from " + biz + ". Running a little behind on the job before you — I'll be there by about " + time + ". Thanks for your patience!" },
+          { tone:"Professional", t: hi + " this is " + tech + " with " + biz + ". Our previous job is running long, so your new arrival window is around " + time + ". Apologies for the delay and thank you for understanding." }
+        ],
+        done: [
+          { tone:"Friendly", t: hi + " thanks for choosing " + biz + " today! Hope everything's working great. If you have 30 seconds, a quick Google review really helps a small business like ours: " + rev + " 🙏" },
+          { tone:"Professional", t: hi + " thank you for your business with " + biz + ". If you were happy with the service, we'd truly appreciate a short review — it helps other homeowners find us: " + rev },
+        ],
+        followup: [
+          { tone:"Friendly", t: hi + " it's " + tech + " from " + biz + " — just checking in on the estimate we sent over. Any questions I can answer? Happy to get you on the schedule whenever you're ready." },
+          { tone:"Professional", t: hi + " following up from " + biz + " regarding your recent estimate. We'd be glad to answer any questions or reserve a time for the work. Just reply here and we'll take care of it." }
+        ]
+      };
+      return M[active];
+    }
+
+    function render(){
+      document.getElementById("chips").innerHTML = SCENARIOS.map(function(s){
+        return '<button class="chip' + (s.key===active?' active':'') + '" data-k="'+s.key+'">'+s.label+'</button>';
+      }).join("");
+      var msgs = build();
+      document.getElementById("output").innerHTML = msgs.map(function(m,i){
+        return '<div class="msg"><div class="txt" id="m'+i+'">'+m.t.replace(/</g,"&lt;")+'</div>'+
+               '<div class="bar"><span class="tone">'+m.tone+'</span>'+
+               '<button class="copy" data-i="'+i+'">Copy</button></div></div>';
+      }).join("");
+      document.querySelectorAll(".chip").forEach(function(c){
+        c.addEventListener("click", function(){ active=c.getAttribute("data-k"); render(); });
+      });
+      document.querySelectorAll(".copy").forEach(function(b){
+        b.addEventListener("click", function(){
+          var txt = document.getElementById("m"+b.getAttribute("data-i")).textContent;
+          navigator.clipboard.writeText(txt).then(function(){
+            b.textContent="Copied ✓"; b.classList.add("done");
+            setTimeout(function(){ b.textContent="Copy"; b.classList.remove("done"); }, 1600);
+          });
+        });
+      });
+    }
+    ["biz","tech","cust","time","review"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", render);
+    });
+    render();
+  </script>
+</body>
+</html>
