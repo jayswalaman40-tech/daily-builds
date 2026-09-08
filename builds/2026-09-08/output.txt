@@ -1,0 +1,42 @@
+============================================================
+TECHNICIAN TURNOVER COST CALCULATOR - sample run
+Sample data only. No real employee or customer data.
+============================================================
+
+--- Small shop (4 techs) ---
+Technicians on staff:        4
+Average annual salary:       $58,000
+Annual turnover rate:        20%
+Replacement cost multiplier: 1.5x salary
+Techs lost per year:         0.8
+Cost per lost tech:          $87,000
+Monthly cost of turnover:    $5,800
+Annual cost of turnover:     $69,600
+
+--- Mid-size shop (20 techs, industry-benchmark 17.5% turnover) ---
+Technicians on staff:        20
+Average annual salary:       $55,000
+Annual turnover rate:        17.5%
+Replacement cost multiplier: 1.0x salary
+Techs lost per year:         3.5
+Cost per lost tech:          $55,000
+Monthly cost of turnover:    $16,042
+Annual cost of turnover:     $192,500
+
+--- Small shop (4 techs) at strong-retention 8% turnover ---
+Technicians on staff:        4
+Average annual salary:       $58,000
+Annual turnover rate:        8%
+Replacement cost multiplier: 1.5x salary
+Techs lost per year:         0.3
+Cost per lost tech:          $87,000
+Monthly cost of turnover:    $2,320
+Annual cost of turnover:     $27,840
+
+============================================================
+SUMMARY
+============================================================
+Small 4-tech shop, 20% turnover -> $69,600/year hidden cost
+Same shop at 8% turnover        -> $27,840/year hidden cost
+Recoverable by cutting turnover  -> $41,760/year
+20-tech shop at 17.5% (benchmark)-> $192,500/year hidden cost
