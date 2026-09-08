@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Maintenance Checklist Generator — free tool by AnswerCatch</title>
+<meta name="description" content="Generate a branded seasonal maintenance checklist to hand customers or use on service visits. Pick a trade and season, then print or save as a PDF. Free, no signup." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}.nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  input[type=text]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input:focus{outline:none;border-color:var(--blue)}
+  .field{margin-bottom:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{border:1.5px solid var(--line);background:#fff;color:var(--body);font-family:var(--font);font-weight:700;font-size:.92rem;padding:9px 15px;border-radius:11px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--blue);color:var(--blue)}
+  .chip.active{background:var(--grad-btn);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(47,107,255,.3)}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px;align-items:center}
+  .btn-print{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.34)}
+  .btn-print:hover{color:#fff;transform:translateY(-2px)}
+  .doc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);margin-bottom:22px}
+  .doc-top{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .doc-top .biz{font-size:1.5rem;font-weight:900;color:var(--ink)}
+  .doc-top .ttl{font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:4px}
+  .doc-top .contact{color:var(--muted);font-size:.9rem;text-align:right;white-space:pre-line}
+  .clist{list-style:none}
+  .clist li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:1rem}
+  .clist li .box{flex:none;width:20px;height:20px;border:2px solid var(--muted);border-radius:5px;margin-top:2px}
+  .doc .note{margin-top:18px;color:var(--muted);font-size:.85rem}
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}.cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}.cta .btn:hover{transform:translateY(-2px)}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}.foot a{color:var(--blue)}
+  @media print{
+    body{background:#fff}
+    .site-header,.no-print,.cta,.foot,.crumb,.eyebrow,h1,.lede{display:none!important}
+    .wrap{padding:0;max-width:100%}
+    .doc{border:none;box-shadow:none;border-radius:0;padding:0;margin:0}
+    @page{margin:16mm}
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb no-print"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Checklist Generator</span>
+    <h1>A branded maintenance checklist in seconds</h1>
+    <p class="lede">Hand customers a helpful seasonal checklist with your name on it — it builds trust, keeps you top of mind, and sets up the next service call. Pick your trade and season, then print or save as a PDF.</p>
+
+    <div class="card no-print">
+      <div class="field"><label>Your business name</label><input type="text" id="biz" placeholder="Rapid Plumbing" /></div>
+      <div class="field"><label>Phone / website <span style="color:var(--muted);font-weight:500">(optional)</span></label><input type="text" id="contact" placeholder="(555) 123-4567 · rapidplumbing.com" /></div>
+      <div class="field"><label>Trade</label><div class="chips" id="trades"></div></div>
+      <div class="field" style="margin-bottom:0"><label>Season</label><div class="chips" id="seasons"></div></div>
+    </div>
+
+    <div class="actions no-print">
+      <button class="btn btn-print" id="print">🖨️ Print / Save as PDF</button>
+      <span style="color:var(--muted);font-size:.9rem">Live preview below.</span>
+    </div>
+
+    <div class="doc" id="doc">
+      <div class="doc-top">
+        <div><div class="biz" id="d-biz">Your Business</div><div class="ttl" id="d-ttl">Maintenance Checklist</div></div>
+        <div class="contact" id="d-contact"></div>
+      </div>
+      <ul class="clist" id="d-list"></ul>
+      <div class="note" id="d-note"></div>
+    </div>
+
+    <div class="cta no-print">
+      <h2>Checklists spark the next call — be ready to answer</h2>
+      <p>When a customer spots something on the list and calls, AnswerCatch picks up 24/7 and books the visit — turning a free handout into booked work.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot no-print">
+      Free to use. General guidance for homeowners — not a substitute for professional inspection.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    var TRADES={
+      Plumbing:["Check under sinks for leaks or drips","Test water pressure at faucets","Inspect water heater for rust or pooling","Exercise main shut-off valve","Clear slow drains before they clog","Check toilet for silent running/leaks"],
+      HVAC:["Replace or clean air filters","Clear debris around the outdoor unit","Check thermostat settings and batteries","Listen for unusual noises on startup","Inspect visible ductwork/vents for dust","Confirm condensate drain is clear"],
+      Electrical:["Test GFCI outlets (kitchen, bath, exterior)","Check for warm or discolored outlets/switches","Test smoke & CO detectors, replace batteries","Inspect the panel for tripped breakers","Look for frayed or damaged cords","Confirm outdoor outlets have weather covers"],
+      Roofing:["Look for missing, cracked or curling shingles","Clear gutters and downspouts","Check flashing around vents and chimney","Inspect attic for leaks or daylight","Trim branches touching the roof","Check for granules in the gutters"],
+      General:["Walk the property for obvious issues","Test smoke & CO detectors","Check caulking around windows & doors","Inspect visible plumbing for drips","Clear gutters and drains","Note anything that needs a pro's eye"]
+    };
+    var SEASON={
+      Spring:["Check outdoor faucets/hoses after winter","Service AC before the first hot day","Clear winter debris from drains & gutters"],
+      Summer:["Confirm AC is cooling efficiently","Check for pests around entry points","Inspect for sun/heat damage outdoors"],
+      Fall:["Service heating before the first cold snap","Disconnect & drain outdoor hoses","Clear leaves from gutters and drains"],
+      Winter:["Protect exposed pipes from freezing","Know where your main water shut-off is","Test heat & detectors before heavy use"]
+    };
+    var trade="Plumbing", season="Spring";
+    function v(id){return document.getElementById(id).value.trim();}
+    function render(){
+      document.getElementById("trades").innerHTML=Object.keys(TRADES).map(function(t){return '<button class="chip'+(t===trade?' active':'')+'" data-t="'+t+'">'+t+'</button>';}).join("");
+      document.getElementById("seasons").innerHTML=Object.keys(SEASON).map(function(s){return '<button class="chip'+(s===season?' active':'')+'" data-s="'+s+'">'+s+'</button>';}).join("");
+      document.querySelectorAll("[data-t]").forEach(function(c){c.addEventListener("click",function(){trade=c.getAttribute("data-t");render();});});
+      document.querySelectorAll("[data-s]").forEach(function(c){c.addEventListener("click",function(){season=c.getAttribute("data-s");render();});});
+      document.getElementById("d-biz").textContent=v("biz")||"Your Business";
+      document.getElementById("d-ttl").textContent=season+" "+trade+" Maintenance Checklist";
+      document.getElementById("d-contact").textContent=v("contact");
+      var items=TRADES[trade].concat(SEASON[season]);
+      document.getElementById("d-list").innerHTML=items.map(function(it){return '<li><span class="box"></span><span>'+it.replace(/</g,"&lt;")+'</span></li>';}).join("");
+      document.getElementById("d-note").textContent="Spotted something you're unsure about? Call "+(v("biz")||"us")+" — we're happy to take a look.";
+    }
+    ["biz","contact"].forEach(function(id){document.getElementById(id).addEventListener("input",render);});
+    document.getElementById("print").addEventListener("click",function(){window.print();});
+    render();
+  </script>
+</body>
+</html>
