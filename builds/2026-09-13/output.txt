@@ -1,0 +1,27 @@
+=== Weather Day / Rain-Out Cost Calculator — sample runs ===
+(Sample crew/revenue data only — no real customer or business data)
+
+--- Small roofing crew, moderate-rain region (tool defaults) ---
+Crew size: 5 workers | Wage: $28/hr | Weather days/month: 4 | Revenue lost/day: $2,200
+Idle labor cost per weather day: $1,120
+Total cost per weather day:      $3,320
+Cost per month:                  $13,280
+Cost per year:                   $159,360
+
+--- 3-person landscaping crew, drier climate ---
+Crew size: 3 workers | Wage: $22/hr | Weather days/month: 2 | Revenue lost/day: $1,400
+Idle labor cost per weather day: $528
+Total cost per weather day:      $1,928
+Cost per month:                  $3,856
+Cost per year:                   $46,272
+
+--- Benchmark check: 5-worker crew, $25/hr, labor cost only (no revenue term) ---
+Crew size: 5 workers | Wage: $25/hr | Weather days/month: 3.33 | Revenue lost/day: $0
+Idle labor cost per weather day: $1,000
+Total cost per weather day:      $1,000
+Cost per month:                  $3,330
+Cost per year:                   $39,960
+
+Sanity check vs published $30,000-$50,000/yr benchmark for this crew profile: $39,960/yr -> MATCHES
+
+If scenario 1's crew cut weather days lost from 4/mo to 2.0/mo (faster reschedule / buffer-day planning): $79,680/yr recoverable.
