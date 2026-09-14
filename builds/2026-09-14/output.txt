@@ -1,0 +1,30 @@
+=== Credit Card Processing Fee Calculator — sample runs ===
+(Sample business data only — no real customer or processor data)
+
+--- Mid-size home-service business, flat-rate processor (tool defaults) ---
+Card volume/mo: $30,000 | Rate: 3.2% | Txns/mo: 120 | Flat fee: $0.3/txn | Net margin: 12%
+Fee cost per month:        $996
+Fee cost per year:         $11,952
+Annual profit (pre-fee comparison base): $43,200
+Fees as % of annual profit: 27.7%
+Recoverable/yr at 2.1% benchmark: $3,960
+
+--- Solo operator, high-ticket installs, unnegotiated rate ---
+Card volume/mo: $18,000 | Rate: 3.5% | Txns/mo: 25 | Flat fee: $0.3/txn | Net margin: 15%
+Fee cost per month:        $638
+Fee cost per year:         $7,650
+Annual profit (pre-fee comparison base): $32,400
+Fees as % of annual profit: 23.6%
+Recoverable/yr at 2.1% benchmark: $3,024
+
+--- Benchmark check: $75k/yr revenue biz, $60k/yr on cards at 2.7%, 10% margin ---
+Card volume/mo: $5,000 | Rate: 2.7% | Txns/mo: 0 | Flat fee: $0/txn | Net margin: 10%
+Fee cost per month:        $135
+Fee cost per year:         $1,620
+Annual profit (pre-fee comparison base): $6,000
+Fees as % of annual profit: 27.0%
+Recoverable/yr at 2.1% benchmark: $360
+
+Sanity check vs published '>20% of annual profit' claim for this exact profile: 27.0% of profit -> MATCHES/EXCEEDS
+
+If scenario 1's business (30,000/mo card volume at 3.2%) negotiated down to the 2.1% interchange-plus benchmark: $3,960/yr recoverable (rate portion only, before any flat-fee or transaction-count changes).

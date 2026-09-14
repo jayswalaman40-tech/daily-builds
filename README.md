@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-14 | [Credit Card Processing Fee Calculator](builds/2026-09-14) | Sample business, $30k/mo card volume at 3.2%: $996/mo, $11,952/yr in fees (28% of profit) → $3,960/yr recoverable at 2.1% interchange-plus benchmark |
 | 2026-09-13 | [Weather Day / Rain-Out Cost Calculator](builds/2026-09-13) | Sample 5-worker roofing crew, 4 weather days/mo: $3,320/day → $159,360/yr; benchmark crew (labor-only) matched published $30k-$50k/yr industry estimate |
 | 2026-09-03 | [Unsold Estimate Recovery Calculator](builds/2026-09-03) | Sample month, 24 quotes: 25% close rate at 0-1 follow-ups vs 50% at 4+ → $3,588 neglected, $1,794 recoverable |
 | 2026-09-04 | [Callback & Rework Cost Calculator](builds/2026-09-04) | Sample month, 130 jobs: 8.5% callback rate (red flag, >3%) → $4,938/mo, $59,256/yr cost; $45,250/yr recoverable at 2% benchmark |
