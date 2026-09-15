@@ -1,0 +1,30 @@
+=== BYOM Job Pricing Calculator — sample runs ===
+(Sample business data only — no real customer or job data)
+
+--- Mid-size plumbing/HVAC shop (tool defaults) ---
+Avg materials value/job if contractor supplied: $650 | Normal markup: 25% | BYOM handling fee charged: 15% | BYOM jobs/mo: 8
+Markup lost per BYOM job (no fee):     $162
+Recommended handling fee per job:      $98
+Still left on table per job (charged): $65
+If NO fee charged  -> per month: $1,300 | per year: $15,600
+If fee IS charged  -> per month: $520 | per year: $6,240
+
+--- Solo operator, high-ticket fixture installs, charging $0 fee today ---
+Avg materials value/job if contractor supplied: $1,200 | Normal markup: 30% | BYOM handling fee charged: 0% | BYOM jobs/mo: 5
+Markup lost per BYOM job (no fee):     $360
+Recommended handling fee per job:      $0
+Still left on table per job (charged): $360
+If NO fee charged  -> per month: $1,800 | per year: $21,600
+If fee IS charged  -> per month: $1,800 | per year: $21,600
+
+--- Benchmark check: low end of sourced ranges (15% markup, 15% surcharge) ---
+Avg materials value/job if contractor supplied: $500 | Normal markup: 15% | BYOM handling fee charged: 15% | BYOM jobs/mo: 6
+Markup lost per BYOM job (no fee):     $75
+Recommended handling fee per job:      $75
+Still left on table per job (charged): $0
+If NO fee charged  -> per month: $450 | per year: $5,400
+If fee IS charged  -> per month: $0 | per year: $0
+
+Sanity check — equal 15%/15% (low end of both sourced ranges) should leave $0 on the table per job when the fee is charged: $0 -> MATCHES
+
+Scenario 1 shop (8 BYOM jobs/mo, $650 avg materials value, 25% normal markup): charging nothing costs $15,600/yr in lost margin. Charging the sourced 15% handling fee still leaves $6,240/yr on the table (25%-15% = 10% margin gap) — but recovers $9,360/yr versus charging nothing.

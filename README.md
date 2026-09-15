@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-15 | [BYOM Job Pricing Calculator](builds/2026-09-15) | Sample plumbing/HVAC shop, $650 materials/job, 8 BYOM jobs/mo: $15,600/yr lost charging no fee → $9,360/yr recovered charging the sourced 15% handling fee |
 | 2026-09-14 | [Credit Card Processing Fee Calculator](builds/2026-09-14) | Sample business, $30k/mo card volume at 3.2%: $996/mo, $11,952/yr in fees (28% of profit) → $3,960/yr recoverable at 2.1% interchange-plus benchmark |
 | 2026-09-13 | [Weather Day / Rain-Out Cost Calculator](builds/2026-09-13) | Sample 5-worker roofing crew, 4 weather days/mo: $3,320/day → $159,360/yr; benchmark crew (labor-only) matched published $30k-$50k/yr industry estimate |
 | 2026-09-03 | [Unsold Estimate Recovery Calculator](builds/2026-09-03) | Sample month, 24 quotes: 25% close rate at 0-1 follow-ups vs 50% at 4+ → $3,588 neglected, $1,794 recoverable |
