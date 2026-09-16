@@ -1,0 +1,21 @@
+--- Small HVAC shop — light GC/insurance work ---
+  Monthly slow-pay revenue: $20,000/mo | Days waiting: 30 | APR: 22% | Avg job: $500
+  Daily revenue:            $657.53
+  Cash trapped right now:   $19,726
+  Jobs' worth of cash tied up: 39.5 jobs
+  Cost to bridge the gap:   $362/mo  ($4,340/yr)
+
+--- Mid-size plumbing co — GC + property mgmt mix (default) ---
+  Monthly slow-pay revenue: $45,000/mo | Days waiting: 45 | APR: 22% | Avg job: $650
+  Daily revenue:            $1,479.45
+  Cash trapped right now:   $66,575
+  Jobs' worth of cash tied up: 102.4 jobs
+  Cost to bridge the gap:   $1,221/mo  ($14,647/yr)
+
+--- Larger contractor — heavy insurance/warranty billing ---
+  Monthly slow-pay revenue: $90,000/mo | Days waiting: 60 | APR: 24% | Avg job: $800
+  Daily revenue:            $2,958.90
+  Cash trapped right now:   $177,534
+  Jobs' worth of cash tied up: 221.9 jobs
+  Cost to bridge the gap:   $3,551/mo  ($42,608/yr)
+

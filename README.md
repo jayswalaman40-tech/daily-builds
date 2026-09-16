@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-16 | [Cash Flow Gap Calculator](builds/2026-09-16) | Sample mid-size plumbing co, $45k/mo GC/insurance revenue, 45-day wait: $66,575 cash trapped, 102.4 jobs' worth, $14,647/yr cost to bridge at 22% APR |
 | 2026-09-15 | [BYOM Job Pricing Calculator](builds/2026-09-15) | Sample plumbing/HVAC shop, $650 materials/job, 8 BYOM jobs/mo: $15,600/yr lost charging no fee → $9,360/yr recovered charging the sourced 15% handling fee |
 | 2026-09-14 | [Credit Card Processing Fee Calculator](builds/2026-09-14) | Sample business, $30k/mo card volume at 3.2%: $996/mo, $11,952/yr in fees (28% of profit) → $3,960/yr recoverable at 2.1% interchange-plus benchmark |
 | 2026-09-13 | [Weather Day / Rain-Out Cost Calculator](builds/2026-09-13) | Sample 5-worker roofing crew, 4 weather days/mo: $3,320/day → $159,360/yr; benchmark crew (labor-only) matched published $30k-$50k/yr industry estimate |
