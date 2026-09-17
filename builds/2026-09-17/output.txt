@@ -1,0 +1,31 @@
+--- Sample: mid-size plumbing/HVAC service shop ---
+Jobs/month: 60
+Jobs with unbilled extra work: 30% -> 18.0 jobs/mo
+Extra unbilled hours/job: 2  @ $85/hr
+Extra unbilled materials/job: $60
+Loss per affected job: $230.00
+Loss per month: $4,140.00
+Loss per year: $49,680.00
+
+--- Sample: small remodeling contractor ---
+Jobs/month: 12
+Jobs with unbilled extra work: 60% -> 7.2 jobs/mo
+Extra unbilled hours/job: 4  @ $85/hr
+Extra unbilled materials/job: $150
+Loss per affected job: $490.00
+Loss per month: $3,528.00
+Loss per year: $42,336.00
+
+--- Sample: 4-person roofing crew ---
+Jobs/month: 25
+Jobs with unbilled extra work: 40% -> 10.0 jobs/mo
+Extra unbilled hours/job: 2.5  @ $75/hr
+Extra unbilled materials/job: $90
+Loss per affected job: $277.50
+Loss per month: $2,775.00
+Loss per year: $33,300.00
+
+=== Summary ===
+Sample: mid-size plumbing/HVAC service shop: $49,680/yr lost to unbilled scope creep (18.0 affected jobs/mo)
+Sample: small remodeling contractor: $42,336/yr lost to unbilled scope creep (7.2 affected jobs/mo)
+Sample: 4-person roofing crew: $33,300/yr lost to unbilled scope creep (10.0 affected jobs/mo)
