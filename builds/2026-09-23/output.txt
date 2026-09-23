@@ -1,0 +1,13 @@
+Hiring Delay Cost Calculator — sample run
+
+Shop                          Open   Days   Rev/day  Covered      Lost rev     OT cost    Total cost
+Mid-size HVAC & plumbing co      2     56      $520      25%       $43,680      $8,736       $52,416
+Solo-to-2-truck electrician shop     1     62      $410      15%       $21,607      $2,288       $23,895
+Regional roofing crew (peak season)     3     48      $610      35%       $57,096     $18,446       $75,542
+
+Shops in sample: 3
+Combined cost of current hiring gaps: $151,853
+
+Benchmark used: 56-day average time-to-fill for skilled trades roles (2026),
+$2,000-$7,800/day lost revenue per unfilled tech position (industry range).
+62% of plumbing contractors in shortage markets declined $50k+ revenue in 2024 due to staffing gaps.
