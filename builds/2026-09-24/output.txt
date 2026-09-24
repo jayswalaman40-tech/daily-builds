@@ -1,0 +1,15 @@
+Sample: mid-size remodeling/roofing contractor
+Material-heavy jobs/month: 15
+Avg material cost per job at quote time: $7,500
+Material price increase since quoting (tariffs, steel/aluminum/lumber): 9%
+% of jobs fixed-price with NO escalation clause: 65%
+
+Increase $ per unprotected job: $675
+Unprotected jobs/month: 9.75
+EATEN per month (contractor pays out of margin): $6,581
+EATEN per year: $78,975
+
+Industry benchmark tariff/escalation line item: 1.25% of total job value
+Est. avg total job value (material ~35% of total): $21,429
+Recommended line item per job: $268
+If added to ALL 15 jobs/month going forward, protects: $48,214/yr

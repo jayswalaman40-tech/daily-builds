@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-24 | [Material Price Escalation Calculator](builds/2026-09-24) | Sample mid-size remodeling/roofing shop, 15 material-heavy jobs/mo, 9% material price increase, 65% of jobs with no escalation clause: $78,975/yr eaten out of margin, $48,214/yr protectable with a ~1.25% tariff line item |
 | 2026-09-23 | [Hiring Delay Cost Calculator](builds/2026-09-23) | Sample mid-size HVAC/plumbing shop, 2 open positions, 56-day avg fill time, 25% covered by overtime: $52,416 total cost of the vacancy ($43,680 lost revenue + $8,736 overtime) |
 | 2026-09-17 | [Scope Creep Calculator](builds/2026-09-17) | Sample mid-size plumbing/HVAC shop, 60 jobs/mo, 30% with unbilled extra work: $4,140/mo, $49,680/yr lost to unbilled hours + materials never invoiced |
 | 2026-09-16 | [Cash Flow Gap Calculator](builds/2026-09-16) | Sample mid-size plumbing co, $45k/mo GC/insurance revenue, 45-day wait: $66,575 cash trapped, 102.4 jobs' worth, $14,647/yr cost to bridge at 22% APR |
