@@ -1,0 +1,38 @@
+=== Sample shop: 4 techs, 8 OT hrs/week each, $28/hr, 1.5x ===
+techs: 4
+ot_hrs_per_week: 8
+rate: 28
+mult: 1.5
+weekly_ot_hours: 32
+premium_per_hour: 14.0
+ot_premium_per_week: 448.0
+ot_premium_per_year: 22400.0
+total_ot_spend_per_year: 67200.0
+fully_loaded_new_hire_per_year: 75600.0
+gap: -8400.0
+
+=== Sensitivity: same shop but 2x weekend/OT rate ===
+techs: 4
+ot_hrs_per_week: 8
+rate: 28
+mult: 2.0
+weekly_ot_hours: 32
+premium_per_hour: 28.0
+ot_premium_per_week: 896.0
+ot_premium_per_year: 44800.0
+total_ot_spend_per_year: 89600.0
+fully_loaded_new_hire_per_year: 75600.0
+gap: 14000.0
+
+=== Smaller shop: 2 techs, 5 OT hrs/week, $32/hr, 1.5x ===
+techs: 2
+ot_hrs_per_week: 5
+rate: 32
+mult: 1.5
+weekly_ot_hours: 10
+premium_per_hour: 16.0
+ot_premium_per_week: 160.0
+ot_premium_per_year: 8000.0
+total_ot_spend_per_year: 24000.0
+fully_loaded_new_hire_per_year: 86400.0
+gap: -62400.0

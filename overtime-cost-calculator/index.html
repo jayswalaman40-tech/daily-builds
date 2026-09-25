@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Overtime Cost Calculator — free tool by AnswerCatch</title>
+<meta name="description" content="See what unplanned overtime is really costing you — and whether it's actually cheaper to hire another tech. Free, no-signup calculator." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#060b1a; --ink:#0c1530; --body:#4a556e; --muted:#7b87a3;
+    --blue:#2f6bff; --blue-dark:#1f4fd6; --cyan:#22d3ee; --accent:#10d9b0;
+    --loss:#e5484d; --line:#e7ebf3; --bg:#fff; --bg-soft:#f6f8fd; --bg-alt:#eef3fc;
+    --grad:linear-gradient(120deg,#5b5bf0,#2f6bff 50%,#22d3ee);
+    --grad-btn:linear-gradient(120deg,#3f78ff,#2f6bff 55%,#4bb9ff);
+    --radius:20px; --radius-sm:12px;
+    --shadow-sm:0 2px 12px rgba(12,21,48,.06); --shadow:0 16px 40px rgba(12,21,48,.10);
+    --container:1180px; --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);color:var(--body);background:var(--bg-soft);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+  a:hover{color:var(--blue-dark)}
+  h1,h2,h3{color:var(--ink);line-height:1.16;font-weight:800;letter-spacing:-.025em}
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(231,235,243,.9)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.3rem;color:var(--ink);letter-spacing:-.03em}
+  .brand .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--grad-btn);display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px rgba(47,107,255,.42)}
+  .brand .logo-mark svg{width:21px;height:21px}
+  .brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:.97rem;padding:9px 15px;border-radius:10px}
+  .nav-links a:hover{background:var(--bg-alt);color:var(--blue)}
+  .nav-links a.active{color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font);font-weight:700;font-size:1rem;padding:11px 21px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 26px rgba(47,107,255,.36)}
+  .btn-primary:hover{color:#fff;transform:translateY(-2px)}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;border-radius:10px}
+  .nav-toggle span{display:block;width:24px;height:2.5px;background:var(--ink);border-radius:2px;margin:5px auto}
+  @media(max-width:860px){.nav-links{display:none}.nav-toggle{display:block}}
+  /* page */
+  .wrap{max-width:760px;margin:0 auto;padding:44px 24px 70px}
+  .crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  h1{font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:900;margin-bottom:12px}
+  .lede{color:var(--body);font-size:1.12rem;margin-bottom:28px;max-width:600px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+  label{display:block;font-size:.9rem;color:var(--body);font-weight:600;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .field{margin-bottom:20px}
+  .val{color:var(--blue);font-weight:800}
+  input[type=range]{width:100%;accent-color:var(--blue);height:6px}
+  input[type=number]{width:100%;background:var(--bg-soft);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);padding:12px 14px;font-size:1rem;font-family:var(--font);font-weight:600}
+  input[type=number]:focus{outline:none;border-color:var(--blue)}
+  .divider{border:none;border-top:1px solid var(--line);margin:22px 0}
+  .out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:560px){.out{grid-template-columns:1fr}}
+  .stat{background:linear-gradient(180deg,#fff,#fff6f6);border:1px solid #f6d9da;border-radius:var(--radius-sm);padding:18px;text-align:center}
+  .stat .n{font-size:1.7rem;font-weight:900;color:var(--loss);letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+  .stat.win{background:linear-gradient(180deg,#fff,#f2fdf9);border-color:#c7f0e2}
+  .stat.win .n{color:var(--accent)}
+  .gapline{margin-top:16px;padding:16px 18px;border-radius:var(--radius-sm);background:var(--bg-alt);font-size:.98rem;color:var(--ink);font-weight:600;text-align:center}
+  .gapline b{color:var(--loss)}
+  .gapline b.ok{color:var(--accent)}
+  /* cta */
+  .cta{background:var(--grad-btn);color:#fff;border-radius:var(--radius);padding:30px;text-align:center;box-shadow:0 16px 40px rgba(47,107,255,.28)}
+  .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+  .cta p{margin:0 auto 18px;font-size:1rem;opacity:.92;max-width:460px}
+  .cta .btn{background:#fff;color:var(--blue);font-size:1.02rem;padding:14px 30px}
+  .cta .btn:hover{transform:translateY(-2px)}
+  /* how-to + benefits */
+  .sec{margin:40px 0}
+  .sec .eyebrow{display:block}
+  .sec h2{font-size:1.5rem;margin-bottom:18px}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--bg-alt);color:var(--blue);font-weight:800;display:grid;place-items:center}
+  .step h4{color:var(--ink);font-size:1.02rem;margin-bottom:3px}
+  .step p{color:var(--muted);font-size:.95rem;margin:0}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr}}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;box-shadow:var(--shadow-sm)}
+  .benefit .ic{width:42px;height:42px;border-radius:11px;background:rgba(16,217,176,.12);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+  .benefit h4{color:var(--ink);font-size:1.05rem;margin-bottom:5px}
+  .benefit p{color:var(--muted);font-size:.94rem;margin:0}
+  .foot{color:var(--muted);font-size:.85rem;text-align:center;margin-top:22px;line-height:1.7}
+  .foot a{color:var(--blue)}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M6.5 4.5c-.6-.5-1.5-.4-2 .2L2.8 6.6c-.9 1-1.1 2.4-.5 3.6a19.6 19.6 0 0 0 9.5 9.5c1.2.6 2.6.4 3.6-.5l1.9-1.7c.6-.5.7-1.4.2-2l-2-2.3c-.5-.6-1.3-.7-2-.4l-1.8.9a13 13 0 0 1-4.2-4.2l.9-1.8c.3-.7.2-1.5-.4-2z" fill="currentColor"/></svg></span>
+        Answer<b>Catch</b>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/tools/" class="active">Free Tools</a></li>
+        <li class="nav-cta"><a class="btn btn-primary" href="/signup">Get Started</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/tools/">← All free tools</a></div>
+    <span class="eyebrow">Labor Cost Calculator</span>
+    <h1>Is overtime quietly costing you a whole new hire?</h1>
+    <p class="lede">With over 110,000 HVAC positions unfilled nationally, most owners are covering the gap with overtime instead of headcount. See what those premiums actually add up to — and whether hiring would be cheaper.</p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Techs regularly working overtime: <span class="val" id="techsV">4</span></label>
+          <input type="range" id="techs" min="1" max="20" value="4" />
+        </div>
+        <div class="field">
+          <label>Avg overtime hours per tech, per week: <span class="val" id="otHrsV">8</span></label>
+          <input type="range" id="otHrs" min="1" max="25" value="8" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Regular hourly rate ($)</label>
+          <input type="number" id="rate" value="28" min="0" step="0.5" />
+        </div>
+        <div class="field">
+          <label>Overtime multiplier: <span class="val" id="multV">1.5</span>x</label>
+          <input type="range" id="mult" min="1.5" max="2.5" step="0.5" value="1.5" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="out">
+        <div class="stat"><div class="n" id="premWeek">$0</div><div class="l">OT premium per week</div></div>
+        <div class="stat"><div class="n" id="premYear">$0</div><div class="l">OT premium per year</div></div>
+        <div class="stat"><div class="n" id="totalOt">$0</div><div class="l">total spent on OT hours/yr</div></div>
+      </div>
+      <div class="gapline" id="gapline"></div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">How to use it</span>
+      <h2>Get your number in 30 seconds</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><h4>Count who's actually working OT</h4><p>How many techs regularly log overtime, and roughly how many extra hours a week each one puts in — after-hours calls, weekend jobs, catching up on backlog.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Enter their rate and your OT multiplier</h4><p>Base hourly rate, and whether you pay time-and-a-half (1.5x), double time (2x), or a blended holiday/weekend rate (2.5x).</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>See the real number — and the alternative</h4><p>Get the true annual OT bill, plus what a fully-loaded new hire would cost for comparison.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Overtime feels flexible. The bill isn't.</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">⏱️</div><h4>The law sets the floor, not the ceiling</h4><p>FLSA requires time-and-a-half past 40 hours; many shops pay double time for nights, weekends and holidays — and several states count restricted on-call time too.</p></div>
+        <div class="benefit"><div class="ic">📉</div><h4>Techs are scarce, so OT becomes default</h4><p>With 110,000+ HVAC roles unfilled nationally, existing crews absorb the overflow — and the premium becomes a permanent line item, not an occasional spike.</p></div>
+        <div class="benefit"><div class="ic">🧮</div><h4>Compare it to what a hire actually costs</h4><p>A fully-loaded technician typically runs 25-45% above base wage once payroll tax, workers' comp and benefits are added — often close to what you're already paying in pure OT premium.</p></div>
+        <div class="benefit"><div class="ic">✅</div><h4>Run the numbers before your next "just have them stay late"</h4><p>Once you see the annual total, the hiring-vs-overtime decision usually makes itself.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Stop losing jobs to a phone that doesn't get answered</h2>
+      <p>AnswerCatch is an AI receptionist that answers, qualifies, and books every job 24/7 — so a stretched, overtime-heavy crew isn't also missing new business on top of it.</p>
+      <a class="btn" href="/signup">Book a free demo →</a>
+    </div>
+
+    <div class="foot">
+      Estimates only, based on your inputs. New-hire comparison assumes a 35% labor burden and 2,000 regular hours/year (40 hrs × 50 weeks) — a common industry rule of thumb, not a quote.<br/>
+      A free build-in-public tool by <a href="https://x.com/aman_buildt">@aman_buildt</a> ·
+      <a href="https://github.com/jayswalaman40-tech/daily-builds">see the code</a>
+    </div>
+  </div>
+
+  <script>
+    function money(x){ return "$" + Math.round(x).toLocaleString("en-US"); }
+    var WEEKS = 50, BURDEN = 1.35, REG_HOURS_YEAR = 2000;
+    function calc(){
+      var techs = +document.getElementById("techs").value;
+      var otHrs = +document.getElementById("otHrs").value;
+      var rate = +document.getElementById("rate").value || 0;
+      var mult = +document.getElementById("mult").value;
+      document.getElementById("techsV").textContent = techs;
+      document.getElementById("otHrsV").textContent = otHrs;
+      document.getElementById("multV").textContent = mult.toFixed(1);
+
+      var otRate = rate * mult;
+      var premiumPerHour = otRate - rate;
+      var weeklyOtHours = techs * otHrs;
+      var premWeek = weeklyOtHours * premiumPerHour;
+      var premYear = premWeek * WEEKS;
+      var totalOtWeek = weeklyOtHours * otRate;
+      var totalOtYear = totalOtWeek * WEEKS;
+      var newHireCost = rate * BURDEN * REG_HOURS_YEAR;
+
+      document.getElementById("premWeek").textContent = money(premWeek);
+      document.getElementById("premYear").textContent = money(premYear);
+      document.getElementById("totalOt").textContent = money(totalOtYear);
+
+      var gap = document.getElementById("gapline");
+      var diff = Math.abs(totalOtYear - newHireCost);
+      if (totalOtYear >= newHireCost) {
+        gap.innerHTML = "You're spending <b>" + money(totalOtYear) + "/yr</b> on overtime hours — " +
+          "<b class=\"ok\">" + money(diff) + " more</b> than a fully-loaded new hire at " + money(newHireCost) + "/yr.";
+      } else {
+        gap.innerHTML = "You're spending <b>" + money(totalOtYear) + "/yr</b> on overtime hours — " +
+          "within <b>" + money(diff) + "</b> of a fully-loaded new hire at " + money(newHireCost) + "/yr.";
+      }
+    }
+    ["techs","otHrs","rate","mult"].forEach(function(id){
+      document.getElementById(id).addEventListener("input", calc);
+    });
+    calc();
+  </script>
+</body>
+</html>

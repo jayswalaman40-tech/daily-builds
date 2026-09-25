@@ -8,6 +8,7 @@ data only).
 ## Index
 | Date | Build | Result |
 |------|-------|--------|
+| 2026-09-25 | [Overtime Cost Calculator](builds/2026-09-25) | Sample 4-tech shop, 8 OT hrs/wk each, $28/hr at 1.5x: $22,400/yr in pure OT premium, $67,200/yr total OT spend — within $8,400 of a fully-loaded new hire ($75,600/yr) |
 | 2026-09-24 | [Material Price Escalation Calculator](builds/2026-09-24) | Sample mid-size remodeling/roofing shop, 15 material-heavy jobs/mo, 9% material price increase, 65% of jobs with no escalation clause: $78,975/yr eaten out of margin, $48,214/yr protectable with a ~1.25% tariff line item |
 | 2026-09-23 | [Hiring Delay Cost Calculator](builds/2026-09-23) | Sample mid-size HVAC/plumbing shop, 2 open positions, 56-day avg fill time, 25% covered by overtime: $52,416 total cost of the vacancy ($43,680 lost revenue + $8,736 overtime) |
 | 2026-09-17 | [Scope Creep Calculator](builds/2026-09-17) | Sample mid-size plumbing/HVAC shop, 60 jobs/mo, 30% with unbilled extra work: $4,140/mo, $49,680/yr lost to unbilled hours + materials never invoiced |
