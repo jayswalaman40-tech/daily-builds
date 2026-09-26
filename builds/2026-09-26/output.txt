@@ -1,0 +1,39 @@
+======================================================================
+Solo plumber, sole prop, single, no state tax, $450 avg job
+  net_profit: 95000
+  filing_status: single
+  state_rate_pct: 0
+  se_tax: 13423.07
+  federal_tax: 10593.46
+  state_tax: 0.0
+  total_tax: 24016.53
+  set_aside_pct: 25.28
+  quarterly_payment: 6004.13
+  per_job_setaside: 113.76
+  quarterly_due_dates: ['Apr 15, 2026', 'Jun 15, 2026', 'Sep 15, 2026', 'Jan 15, 2027']
+======================================================================
+3-tech HVAC shop owner, single-member LLC, single, 5% state tax, $650 avg job
+  net_profit: 180000
+  filing_status: single
+  state_rate_pct: 5
+  se_tax: 25433.19
+  federal_tax: 28882.02
+  state_tax: 9000.0
+  total_tax: 63315.21
+  set_aside_pct: 35.18
+  quarterly_payment: 15828.8
+  per_job_setaside: 228.64
+  quarterly_due_dates: ['Apr 15, 2026', 'Jun 15, 2026', 'Sep 15, 2026', 'Jan 15, 2027']
+======================================================================
+Married electrician, MFJ, 4.5% state tax, $500 avg job
+  net_profit: 130000
+  filing_status: mfj
+  state_rate_pct: 4.5
+  se_tax: 18368.42
+  federal_tax: 10137.9
+  state_tax: 5850.0
+  total_tax: 34356.31
+  set_aside_pct: 26.43
+  quarterly_payment: 8589.08
+  per_job_setaside: 132.14
+  quarterly_due_dates: ['Apr 15, 2026', 'Jun 15, 2026', 'Sep 15, 2026', 'Jan 15, 2027']
